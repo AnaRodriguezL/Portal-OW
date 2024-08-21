@@ -49,7 +49,8 @@ npm install
 **Install backend dependencies:**
 ```bash
 cd ../backend
-pip install -r requirements.txt
+python -m venv env
+python -m pip install -r requirements.txt
 ```
 
 Configure the database connection in the corresponding configuration file.
@@ -62,11 +63,19 @@ python app.py
 
 **Start the frontend server:**
 ```bash
-cd frontend
+cd ../frontend
 ng serve
 ```
 
 And that's it! You can now access the application in your web browser by navigating to `http://localhost:4200`.
+
+**Start the backend server:**
+```bash
+cd ../backend
+python manage.py runserver
+```
+
+And that's it! You can now access the application in your web browser by navigating to `http://localhost:8000`.
 
 <br>
 
