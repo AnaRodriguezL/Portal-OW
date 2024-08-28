@@ -1,5 +1,7 @@
 from rest_framework import generics, status
+from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny,IsAuthenticated
+from django.contrib.auth.hashers import check_password
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.authtoken.models import Token
@@ -24,7 +26,7 @@ class UserDetailView(generics.RetrieveUpdateAPIView):
 
 class RegisterView(generics.CreateAPIView):
     serializer_class = UserSerializer
-    permission_classes = (AllowAny,)
+    permission_classes = [AllowAny]
 
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -36,7 +38,8 @@ class RegisterView(generics.CreateAPIView):
 
 class LoginView(generics.GenericAPIView):
     serializer_class = LoginSerializer
-
+    permission_classes = [AllowAny]
+    
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -45,4 +48,23 @@ class LoginView(generics.GenericAPIView):
         user_data = SimpleUserSerializer(user).data
         return Response({'token': token.key, 'user': user_data})
     
+class ChangePasswordView(APIView):
 
+    def post(self, request, *args, **kwargs):
+        user = request.user
+        current_password = request.data.get("current_password")
+        new_password = request.data.get("new_password")
+
+        # Verificar que la contraseña actual coincida
+        if not check_password(current_password, user.password):
+            return Response({"detail": "La contraseña actual no es correcta."}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Verificar que la nueva contraseña cumpla con los requisitos mínimos
+        if not new_password or len(new_password) < 8:
+            return Response({"detail": "La nueva contraseña debe tener al menos 8 caracteres."}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Cambiar la contraseña del usuario
+        user.set_password(new_password)
+        user.save()
+
+        return Response({"detail": "La contraseña ha sido cambiada exitosamente."}, status=status.HTTP_200_OK)
