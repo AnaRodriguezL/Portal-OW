@@ -24,13 +24,13 @@ TAX_OPCIONES = [
     ('ZZ', 'No aplica')
 ]
 TAX_ID_OPCIONES = [
-    ('Gran contribuyente'),
-    ('Autorretenedor'),
-    ('Agente de retencion en el impuesto sobre las ventas'),
-    ('Regimen simple de tributacion'),
-    ('R-99-PN'),
-    ('No aplica'),
-    ('Otros')
+    ('01','Gran contribuyente'),
+    ('02','Autorretenedor'),
+    ('03','Agente de retencion en el impuesto sobre las ventas'),
+    ('04','Regimen simple de tributacion'),
+    ('05','R-99-PN'),
+    ('06','No aplica'),
+    ('07','Otros')
 ]
 
 
@@ -39,6 +39,7 @@ class Client(models.Model):
     tributare_type_id = models.CharField(
         choices=IDENTIFICACION_OPCIONES, 
         default='CC',
+        max_length=5,
         verbose_name='Tipo de Identificación Tributaria'
     )
     id_number = models.CharField(max_length=15, blank=False)
@@ -47,21 +48,25 @@ class Client(models.Model):
     regime_type = models.CharField(
         choices=REGIMEN_OPCIONES, 
         default='IVA',
+        max_length=7,
         verbose_name='Tipo de regimen'
     )
     taxpayer_type = models.CharField(
         choices=CONTRIBUYENTE_OPCIONES, 
         default='IVA',
+        max_length=10,
         verbose_name='Tipo de contribuyente'
     )
     tax_liability = models.CharField(
         choices=TAX_OPCIONES, 
         default='IVA',
+        max_length=3,
         verbose_name='Responsabilidad tributaria'
     )
     tax_id_type = models.CharField(
         choices=TAX_ID_OPCIONES, 
         default='IVA',
+        max_length=55,
         verbose_name='Tipo de identificacion tributaria'
     )
     eEmail = models.EmailField(blank=True)
@@ -78,4 +83,4 @@ class Contact(models.Model):
     lastname = models.CharField(max_length=30, blank=True)
     tel = models.CharField(max_length=15, blank=True)
     eEmail = models.CharField(max_length=30, blank=True)
-    birthday = models.DateField()
+    birthday = models.DateField(null=True)

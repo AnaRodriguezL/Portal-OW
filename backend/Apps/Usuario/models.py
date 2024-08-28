@@ -17,10 +17,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     tel = models.CharField(max_length=15, blank=True)
     eEmail_personal = models.EmailField(max_length=40, blank=True)
     eEmail_laboral = models.EmailField(max_length=40, blank=True)
-    birthday = models.DateField(blank=True)
+    birthday = models.DateField(null=True)
     id_type = models.CharField(
         choices=IDENTIFICACION_OPCIONES, 
         default='CC',
+        max_length=3,
         verbose_name='Tipo de documento'
     )
     country = models.CharField(max_length=47, blank=True)
