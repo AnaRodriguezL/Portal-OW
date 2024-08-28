@@ -19,7 +19,16 @@ class UserSerializer(serializers.ModelSerializer):
         #Falta incluir logica de redes sociales
         user = User.objects.create_user(**validated_data)
         return user
-    
+
+class SimpleUserSerializer(serializers.ModelSerializer):
+    fullname = serializers.SerializerMethodField()
+    class Meta:
+        model = User
+        fields = ['email', 'fullname']
+
+    def get_fullname(self, obj):
+        return f"{obj.name} {obj.lastname}"
+
 class LoginSerializer(serializers.Serializer):
     email = serializers.EmailField()
     password = serializers.CharField()
