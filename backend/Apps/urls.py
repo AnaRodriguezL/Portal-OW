@@ -5,4 +5,5 @@ urlpatterns = [
     path('Access/', include('Apps.Accesos.urls')),
     path('Clientes/', include('Apps.Clientes.urls')),
     path('Complementos/', include('Apps.Complementos.urls')),
+    path('Servicios/', include('Apps.Servicios.urls')),
 ]
