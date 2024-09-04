@@ -4,4 +4,4 @@ from .models import Access
 class AccessSerializer(serializers.ModelSerializer):
     class Meta:
         model = Access
-        fields = ['id', 'name', 'img']
+        fields = ['id', 'name', 'img', 'client']
