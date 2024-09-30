@@ -24,11 +24,16 @@
                             {
                                 "glob": "**/*",
                                 "input": "public"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "src/assets",
+                                "output": "/assets"
                             }
                         ],
                         "styles": [
-                          "src/styles.scss",
-                          "src/assets/scss/style.scss"
+                            "src/styles.scss",
+                            "src/assets/scss/style.scss"
                         ],
                         "scripts": []
                     },
@@ -83,10 +88,16 @@
                             {
                                 "glob": "**/*",
                                 "input": "public"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "src/assets",
+                                "output": "/assets"
                             }
                         ],
                         "styles": [
-                          "src/styles.scss"
+                            "src/styles.scss",
+                            "src/assets/scss/style.scss"
                         ],
                         "scripts": []
                     }
