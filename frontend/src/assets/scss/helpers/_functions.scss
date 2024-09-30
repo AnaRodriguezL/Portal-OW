@@ -1,12 +1,18 @@
 @use 'sass:map';
 
-// It allows to combine multiple maps together.
+/**
+ * Combinar varios mapas en uno solo
+ *
+ * @param $maps... {map} Los mapas a combinar
+ * @return {map} El mapa resultante
+ */
 @function map-collect($maps...) {
-  $collection: ();
+    $collection: (
+    );
 
-  @each $map in $maps {
+@each $map in $maps {
     $collection: map.merge($collection, $map);
-  }
+}
 
-  @return $collection;
+@return $collection;
 }

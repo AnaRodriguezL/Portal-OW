@@ -1,22 +1,36 @@
+/**
+ * Estilos para el header
+ *
+ * Establece el estilo para el header. Pone el fondo en $toolbar, lo
+ * coloca en la parte superior de la pantalla y le da un borde redondeado.
+ * Luego establece el estilo para el dropdown del men  del header, 
+ * estableciendo el ancho m nimo en 200px.
+ *
+ * Por  ltimo, establece el estilo para el objeto del men  desplegable,
+ * estableciendo que ocupe todo el espacio disponible.
+ */
 html .topbar {
-  background-color: $toolbar;
-  position: sticky;
-  top: 0;
-  z-index: 9;
-  height: $header-height;
-  border-radius: $border-radius;
-  box-shadow: $box-shadow;
+    background-color: $toolbar;
+    position: sticky;
+    top: 0;
+    z-index: 9;
+    height: $header-height;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow;
 }
 
 .topbar-dd {
-  min-width: 200px !important;
+    min-width: 200px !important;
 }
 
 .object-cover {
-  object-fit: cover;
+    object-fit: cover;
 }
 
-
 .mat-mdc-menu-panel.mat-mdc-menu-panel {
-  box-shadow: $box-shadow !important;
+    box-shadow: $box-shadow !important;
+}
+
+.mat-toolbar-row, .mat-toolbar-single-row {
+    padding: 0 26px !important;
 }

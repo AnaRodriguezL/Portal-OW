@@ -1,150 +1,289 @@
+/**
+ * Estilos para el sidebar
+ * Establece los estilos para el sidebar que se muestra en la
+ * pantalla de autenticaci n y en la pantalla de inicio.
+ * @see https://material.angular.io/components/sidenav/overview
+ */
 .sidebarNav {
-  width: $sidenav-desktop !important;
-  flex-shrink: 0;
-  transition: swift-ease-out(width);
-  position: absolute;
-  overflow-x: hidden;
-  top: 0 !important;
-  left: 0;
-  border-right: 0 !important;
-  height: 100%;
-  box-shadow: $box-shadow;
+    flex-shrink: 0;
+    transition: swift-ease-out(width);
+    position: absolute;
+    overflow-x: hidden;
+    top: 0 !important;
+    left: 0;
+    border-right: 0 !important;
+    height: 100vh;
+    box-shadow: $box-shadow;
 }
 
 @media (min-width: 1099px) {
-  .sidebarNav {
-    top: $layout-padding !important;
-    left: $layout-padding;
-    height: calc(100% - #{$layout-padding * 2});
-    border-radius: $border-radius !important;
-  }
+    .sidebarNav {
+        top: $layout-padding !important;
+        left: $layout-padding;
+        height: calc(100% - #{$layout-padding * 2});
+        border-radius: $border-radius !important;
+    }
 }
 
 @media (min-width: 1024px) {
-  .contentWrapper {
-    margin-left: calc(#{$sidenav-desktop} + #{$layout-padding}) !important;
-  }
-  .sidebarNav-mini {
     .contentWrapper {
-      margin-left: calc(#{$sidenav-mini} + #{$layout-padding}) !important;
+        margin-left: calc(72px + #{$layout-padding}) !important;
     }
-  }
-}
 
-.branding {
-  padding: 20px;
+    .sidebarNav-mini {
+        .contentWrapper {
+            margin-left: calc(#{$sidenav-mini} + #{$layout-padding}) !important;
+        }
+    }
 }
 
 .sidebar-list {
-  &.mdc-list {
-    margin-top: -24px;
+    &.mdc-list {
 
-    .mdc-list-group__subheader {
-      margin-top: 24px;
-      margin-bottom: 8px;
-      text-transform: uppercase;
-      font-size: 0.75rem;
-      opacity: 0.5;
-      font-weight: 700;
-      margin-top: 24px;
-      color: $textPrimary;
-      padding: 3px 16px !important;
+        .mdc-list-group__subheader {
+            margin-top: 24px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            opacity: 0.5;
+            font-weight: 700;
+            margin-top: 24px;
+            color: $textPrimary;
+            padding: 3px 16px !important;
+        }
+
+        .menu-list-item {
+            border-radius: 0;
+            height: 50px;
+            padding: 8px 26px;
+            margin: 5px 0;
+            margin-bottom: 2px;
+
+            .hide-menu {
+                font-size: 15px;
+            }
+
+            &.primary {
+
+                &.activeMenu,
+                &.expanded,
+                &:hover {
+
+                    .mdc-list-item__primary-text,
+                    .mat-mdc-list-item-icon {
+                        color: $primary !important;
+                    }
+                }
+
+                &:before {
+                    background-color: $light-primary;
+                }
+            }
+
+            &:before {
+                content: "";
+                display: block;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: -16px;
+                right: unset;
+                width: 0;
+                height: 100%;
+                opacity: 1;
+                z-index: -1;
+                border-radius: 0 24px 24px 0;
+                transition: all 0.4s ease-in-out;
+            }
+
+            &.expanded:before,
+            &.activeMenu:before {
+                content: "";
+                width: 100%;
+            }
+
+            &.activeMenu {
+                &:before {
+                    width: $sidenav-desktop;
+                }
+
+                background-color: transparent !important;
+            }
+
+            &:hover {
+                &:before {
+                    content: "";
+                    width: 100%;
+                }
+
+                .mdc-list-item__primary-text {
+                    color: $textPrimary !important;
+                }
+
+                .mat-mdc-list-item-icon {
+                    color: $textPrimary !important;
+                }
+            }
+
+            &:before,
+            &:focus {
+                z-index: -1;
+            }
+
+            .mdc-list-item__start {
+                margin-right: 14px;
+                margin-left: 0 !important;
+                width: 20px;
+                height: 20px;
+                fill: transparent !important;
+                color: $textPrimary;
+            }
+
+            .mdc-list-item__primary-text {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
     }
-
-    .menu-list-item {
-      border-radius: 0;
-      height: 50px;
-      padding: 8px 26px;
-      margin: 5px 0;
-      margin-bottom: 2px;
-      .hide-menu {
-        font-size: 15px;
-      }
-      &.primary {
-        &.activeMenu,
-        &.expanded,
-        &:hover {
-          .mdc-list-item__primary-text,
-          .mat-mdc-list-item-icon {
-            color: $primary !important;
-          }
-        }
-        &:before {
-          background-color: $light-primary;
-        }
-      }
-      &:before {
-        content: "";
-        display: block;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: -16px;
-        right: unset;
-        width: 0;
-        height: 100%;
-        opacity: 1;
-        z-index: -1;
-        border-radius: 0 24px 24px 0;
-        transition: all 0.4s ease-in-out;
-      }
-
-      &.expanded:before,
-      &.activeMenu:before {
-        content: "";
-        width: 100%;
-      }
-
-      &.activeMenu {
-        &:before {
-          width: 100%;
-        }
-        background-color: transparent !important;
-      }
-      
-      &:hover {
-        &:before {
-          content: "";
-          width: 100%;
-          // background-color: transparent !important;
-        }
-        .mdc-list-item__primary-text {
-          color: $textPrimary !important;
-        }
-
-        .mat-mdc-list-item-icon {
-          color: $textPrimary !important;
-        }
-      }
-      &:before,
-      &:focus {
-        z-index: -1;
-      }
-
-      .mdc-list-item__start {
-        margin-right: 14px;
-        margin-left: 0 !important;
-        width: 20px;
-        height: 20px;
-        fill: transparent !important;
-        color: $textPrimary;
-      }
-
-      .mdc-list-item__primary-text {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-    }
-  }
 }
 
 .flex-layout {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .side-img {
-  margin-top: -60px;
+    margin-top: -60px;
+}
+
+.branding {
+    display: flex;
+    align-items: center;
+    padding: 0.75em;
+    text-decoration: none;
+    white-space: nowrap;
+    color: inherit;
+    border-radius: 50rem;
+
+    .branding-logo {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .branding-name {
+        margin: 0 13px;
+        font-size: 1rem;
+        font-weight: 500;
+    }
+}
+
+.sidenav-container {
+    width: 72px; // Ancho por defecto
+    transition: width 0.3s ease;
+    white-space: nowrap;
+    overflow-x: hidden !important;
+
+    .sidebar-list.mdc-list .menu-list-item .mdc-list-item__start {
+        margin-right: 26px !important;
+    }
+
+    &:hover {
+        width: $sidenav-desktop !important; // Ancho en hover
+    }
+
+    .sidebar-list {
+        list-style-type: none; // Sin viñetas
+        padding: 0; // Sin padding por defecto
+
+        .mat-list-item {
+            display: flex; // Alineación vertical
+            align-items: center;
+            justify-content: center; // Centra los iconos
+            padding: 10px 0; // Espacio vertical uniforme
+            transition: padding 0.3s ease;
+
+            .sidenav-container:hover & {
+                justify-content: flex-start; // Alineación a la izquierda al hacer hover
+                padding-left: 16px; // Espacio al abrir
+                padding-right: 16px; // Espacio al abrir
+            }
+        }
+
+        .mat-list-item-content {
+            display: none; // Oculta el contenido por defecto
+
+            .sidenav-container:hover & {
+                display: block; // Muestra el contenido al hacer hover
+                padding-left: 10px; // Espacio a la izquierda
+                padding-right: 10px; // Espacio a la derecha
+            }
+        }
+    }
+}
+
+.matero-user-panel {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+    cursor: pointer;
+    background-color: var(--user-panel-background-color);
+    border-radius: 0.75rem;
+    outline: none;
+
+    &:hover,
+    &:focus {
+        background-color: var(--user-panel-hover-background-color);
+    }
+}
+
+// Set default width and height can avoid flashing before avatar image loaded.
+.matero-user-panel-avatar {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50rem;
+    transition: transform mat.$private-swift-ease-out-duration mat.$private-swift-ease-out-timing-function;
+    transform-origin: 0 1.5rem;
+
+    [dir='rtl'] & {
+        transform-origin: 3rem 1.5rem;
+    }
+}
+
+.matero-user-panel-info {
+    flex: 1;
+    width: 0;
+    margin-left: 0.75rem;
+    opacity: 1;
+    transition: opacity mat.$private-swift-ease-out-duration mat.$private-swift-ease-out-timing-function;
+
+    [dir='rtl'] & {
+        margin-right: 0.75rem;
+        margin-left: 0;
+    }
+
+    h4,
+    h5 {
+        margin: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    h4 {
+        margin-bottom: 4px;
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    h5 {
+        font-size: 0.75rem;
+        font-weight: normal;
+    }
 }

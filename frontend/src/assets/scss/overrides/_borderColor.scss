@@ -1,8 +1,13 @@
-// theme
+// Establece el color del borde derecho del contenedor del menu lateral
+// y el color del borde superior de los divisores de los componentes
+// de Angular Material. El color se establece en $borderColor.
+//
+// @see https://material.angular.io/components/sidenav/overview
+// @see https://material.angular.io/components/divider/overview
 .mat-drawer-side {
-  border-right: 1px solid $borderColor;
+    border-right: 1px solid $borderColor;
 }
 
 .mat-divider {
-  border-top-color: $borderColor;
+    border-top-color: $borderColor;
 }
