@@ -1,0 +1,192 @@
+.timeline {
+    // Estilos para el timeline
+    position: relative;
+
+    .timeline-item {
+        // Estilos para cada item del timeline
+        position: relative;
+        padding-bottom: 20px;
+
+        .time {
+            padding: 0 16px 6px 0;
+            min-width: 90px;
+            flex-shrink: 0;
+        }
+
+        .desc {
+            padding: 0 16px;
+            // text-align: justify;
+        }
+
+        .timline-border {
+            width: 1px;
+            height: 100%;
+            background-color: $borderColor;
+            flex-shrink: 0;
+        }
+
+        &:last-child {
+            height: 25px;
+        }
+
+        .point {
+            flex-direction: column;
+
+            .timeline-badge {
+                width: 12px;
+                height: 12px;
+                border-radius: 50px;
+                background-color: transparent;
+                flex-shrink: 0;
+
+                // Estilos para el borde de los puntos del timeline
+                &.border-primary {
+                    border: 2px solid $primary !important;
+                }
+
+                &.border-accent {
+                    border: 2px solid $accent !important;
+                }
+
+                &.border-success {
+                    border: 2px solid $success;
+                }
+
+                &.border-warning {
+                    border: 2px solid $warning;
+                }
+
+                &.border-error {
+                    border: 2px solid $error;
+                }
+            }
+
+            .timeline-border {
+                width: 1px;
+                height: 100%;
+                background-color: $borderColor;
+                flex-shrink: 0;
+            }
+        }
+
+        &:last-child {
+            .timeline-border {
+                display: none !important;
+            }
+        }
+    }
+}
+
+.card-overlay {
+    // Estilos para el overlay de la tarjeta
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 242px;
+}
+
+.table-borderless {
+
+    .mdc-data-table__cell,
+    .mdc-data-table__header-cell {
+        border-bottom-color: transparent !important;
+
+        &:first-child {
+            padding-left: 0 !important;
+        }
+    }
+
+    .mdc-data-table__cell.mat-body-1 {
+        text-align: justify;
+        -webkit-box-orient: vertical;
+        white-space: normal;
+        word-wrap: break-word;
+    }
+}
+
+.mat-calendar-header {
+    padding: 0 !important;
+}
+
+.mat-calendar-controls {
+    margin: 0 0 20px 0 !important;
+}
+
+.custom-calendar-container {
+
+    .fc {
+        border-radius: 18px;
+    }
+
+    .fc .fc-toolbar.fc-header-toolbar {
+        margin-bottom: 4em !important;
+    }
+
+    .fc-toolbar {
+        border-top-left-radius: 18px;
+        border-top-right-radius: 18px;
+    }
+
+    .fc-view {
+        border-bottom-left-radius: 18px;
+        border-bottom-right-radius: 18px;
+    }
+
+    .fc-button {
+        border-radius: 18px;
+        border-color: $primary;
+        background-color: $primary;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .fc-button:hover,
+    .fc .fc-button-primary:not(:disabled).fc-button-active,
+    .fc .fc-button-primary:not(:disabled):active {
+        border-color: $light-primary;
+        background-color: $light-primary;
+        color: $primary;
+    }
+
+    .fc-daygrid-day,
+    .fc-daygrid-day-top,
+    .fc-scrollgrid,
+    .fc-scrollgrid-section,
+    .fc-scrollgrid-sync-inner,
+    .fc-scrollgrid-sync-footer {
+        border: none;
+    }
+
+    .fc-daygrid-day {
+        border-bottom: 1px solid #e0e0e0;
+    }
+    
+    .fc-daygrid-day-frame {
+        border-right: 1px solid #e0e0e0;
+    }
+
+    /* Quitar borde de la última columna */
+    .fc-daygrid-day:nth-child(7n) .fc-daygrid-day-frame {
+        border-right: none;
+    }
+
+    /* Quitar borde de la última fila */
+    .fc-daygrid-day-row:last-child .fc-daygrid-day {
+        border-bottom: none;
+    }
+
+    .fc .fc-scrollgrid-section>* {
+        border-width: 0px;
+    }
+
+    .fc-toolbar-title::first-letter,
+    .fc-daygrid-day-number::first-letter,
+    .fc-daygrid-day-top::first-letter {
+        text-transform: uppercase;
+    }
+
+    /* Los días de la semana en mayúsculas */
+    .fc-col-header-cell-cushion {
+        text-transform: uppercase;
+    }
+}

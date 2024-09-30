@@ -1,0 +1,25 @@
+<mat-toolbar class="topbar">
+
+	<!-- Botón que abre o cierra el menu lateral en pantallas pequeñas -->
+	<button mat-icon-button (click)="toggleMobileNav.emit()" *ngIf="!showToggle">
+		<i-tabler name="menu-2" class="icon-20 d-flex"></i-tabler>
+	</button>
+
+    <span>{{ currentRoute }}</span>
+
+	<!-- Espacio entre los botones de la izquierda y la derecha -->
+	<span class="flex-1-auto"></span>
+
+	<!-- Botón que muestra el menu del perfil -->
+	<!-- <button
+		mat-icon-button
+		aria-label="Notifications"
+		class="m-l-10"
+	>
+		<img
+			src="/assets/img/profile/user-1.jpg"
+			class="rounded-circle object-cover"
+			width="35"
+		/>
+	</button> -->
+</mat-toolbar>

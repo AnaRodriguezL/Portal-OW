@@ -1,0 +1,75 @@
+<!-- Mostrar la fecha actual en formato mediumDate -->
+<div class="row">
+	<div class="col-lg-4">
+		<div class="row">
+			<div class="col-lg-12 col-sm-6">
+				<mat-card class="cardWithShadow">
+					<mat-card-content class="p-24">
+						<mat-card-title> Próximos eventos </mat-card-title>
+						<!-- Mostrar la lista de eventos recientes -->
+						<div class="timeline m-t-30">
+							<div
+								class="timeline-item d-flex overflow-hidden"
+								*ngFor="let agendaItem of agendaItems"
+							>
+								<!-- Mostrar la hora del evento -->
+								<div
+									class="time text-right mat-subtitle-1 f-s-14"
+								>
+									{{ agendaItem.time }}
+								</div>
+
+								<!-- Mostrar el punto de la línea temporal -->
+								<div class="point d-flex align-items-center">
+									<span
+										class="timeline-badge border-{{
+											agendaItem.color
+										}} m-y-8"
+									></span>
+									<span class="timline-border d-block"></span>
+								</div>
+
+								<!-- Mostrar la descripción del evento -->
+								<div class="desc">
+									<ng-template [ngIf]="agendaItem.title">
+										<!-- Mostrar el título si existe -->
+										<span
+											class="mat-subtitle-1 f-s-14 lh-20 f-w-600 d-block"
+										>
+											{{ agendaItem.title }}
+										</span>
+									</ng-template>
+
+									<ng-template [ngIf]="agendaItem.subtext">
+										<!-- Mostrar el texto si existe -->
+										<span class="mat-body-1 f-s-14 lh-20">
+											{{ agendaItem.subtext }}
+										</span>
+									</ng-template>
+								</div>
+							</div>
+						</div>
+					</mat-card-content>
+				</mat-card>
+			</div>
+
+            <div class="col-lg-12 col-sm-6">
+                <mat-card class="cardWithShadow">
+                    <mat-card-content class="p-24">
+                        <mat-card-title>
+                            Notificaciones
+                        </mat-card-title>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+		</div>
+	</div>
+
+	<div class="col-lg-8 custom-calendar-container">
+		<mat-card class="cardWithShadow">
+			<mat-card-content class="p-24">
+				<full-calendar [options]="calendarOptions"></full-calendar>
+			</mat-card-content>
+		</mat-card>
+	</div>
+</div>

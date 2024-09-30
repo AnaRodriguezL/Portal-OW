@@ -1,0 +1,61 @@
+.chat-container {
+    max-width: 600px;
+    margin: auto;
+
+    .chat-card {
+        border-radius: 10px;
+        overflow: hidden;
+
+        .messages-container {
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 16px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+
+            .message {
+                margin: 8px 0;
+                position: relative;
+
+                &.user-message {
+                    text-align: right;
+
+                    .message-text {
+                        background-color: #dcf8c6;
+                        /* Verde claro para el usuario */
+                        padding: 8px;
+                        border-radius: 10px;
+                        display: inline-block;
+                        max-width: 70%;
+                    }
+                }
+
+                &.friend-message {
+                    text-align: left;
+
+                    .message-text {
+                        background-color: #f1f0f0;
+                        /* Gris claro para el amigo */
+                        padding: 8px;
+                        border-radius: 10px;
+                        display: inline-block;
+                        max-width: 70%;
+                    }
+                }
+
+                .message-timestamp {
+                    font-size: 10px;
+                    color: #888;
+                    position: absolute;
+                    bottom: -15px;
+                    right: 10px;
+                }
+            }
+        }
+
+        .message-input {
+            width: calc(100% - 48px);
+            margin: 8px;
+        }
+    }
+}
