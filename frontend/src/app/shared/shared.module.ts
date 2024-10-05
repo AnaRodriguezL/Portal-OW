@@ -29,7 +29,6 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { AppNavItemComponent } from '../components/sidebar/nav-item/nav-item.component';
 
 import { BrandingComponent } from '../components/sidebar/branding.component';
-import { UserPanelComponent } from '../components/sidebar/user-panel.component';
 
 /**
  * Modales
@@ -42,7 +41,6 @@ registerLocaleData(localeEs);
     declarations: [
         AppNavItemComponent,
         BrandingComponent,
-        UserPanelComponent,
         AgendaComponent
     ],
     imports: [
@@ -57,8 +55,7 @@ registerLocaleData(localeEs);
         IconsModule,
         FullCalendarModule,
         AppNavItemComponent,
-        BrandingComponent,
-        UserPanelComponent
+        BrandingComponent
     ],
     providers: [
         { provide: LOCALE_ID, useValue: 'es' } 

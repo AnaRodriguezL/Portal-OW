@@ -1,25 +1,29 @@
 <mat-toolbar class="topbar">
 
-	<!-- Botón que abre o cierra el menu lateral en pantallas pequeñas -->
-	<button mat-icon-button (click)="toggleMobileNav.emit()" *ngIf="!showToggle">
-		<i-tabler name="menu-2" class="icon-20 d-flex"></i-tabler>
-	</button>
+    <button mat-icon-button (click)="toggleMobileNav.emit()" *ngIf="!showToggle">
+        <i-tabler name="menu-2" class="icon-20 d-flex"></i-tabler>
+    </button>
 
     <span>{{ currentRoute }}</span>
 
-	<!-- Espacio entre los botones de la izquierda y la derecha -->
-	<span class="flex-1-auto"></span>
+    <span class="flex-1-auto"></span>
 
-	<!-- Botón que muestra el menu del perfil -->
-	<!-- <button
-		mat-icon-button
-		aria-label="Notifications"
-		class="m-l-10"
-	>
-		<img
-			src="/assets/img/profile/user-1.jpg"
-			class="rounded-circle object-cover"
-			width="35"
-		/>
-	</button> -->
+    <button [matMenuTriggerFor]="profilemenu" class="matero-user-panel">
+        <img class="matero-user-panel-avatar" src="/assets/img/profile/user-1.jpg" alt="avatar" width="64" />
+
+    </button>
+
+    <mat-menu #profilemenu="matMenu" xPosition="before" class="topbar-dd cardWithShadow">
+        <button mat-menu-item>
+            <mat-icon class="d-flex align-items-center">
+                <i-tabler name="user" class="icon-18 d-flex"></i-tabler>
+            </mat-icon>
+            Perfil
+        </button>
+
+        <!-- Botón de logout -->
+        <div class="p-x-12 m-t-12">
+            <a mat-flat-button color="primary" class="w-100">Cerrar sesión</a>
+        </div>
+    </mat-menu>
 </mat-toolbar>
