@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // Módulos de controles de formularios de Material
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -52,6 +53,7 @@ import { MatTableModule } from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
 
 const modules = [
+    ReactiveFormsModule,
     MatAutocompleteModule,
     MatCheckboxModule,
     MatDatepickerModule,

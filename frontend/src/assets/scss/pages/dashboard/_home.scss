@@ -1,3 +1,9 @@
+.col-sm-6 {
+    display: flex !important;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
 .timeline {
     // Estilos para el timeline
     position: relative;
@@ -113,7 +119,6 @@
 }
 
 .custom-calendar-container {
-
     .fc {
         border-radius: 18px;
     }
@@ -160,17 +165,15 @@
     .fc-daygrid-day {
         border-bottom: 1px solid #e0e0e0;
     }
-    
+
     .fc-daygrid-day-frame {
         border-right: 1px solid #e0e0e0;
     }
 
-    /* Quitar borde de la última columna */
     .fc-daygrid-day:nth-child(7n) .fc-daygrid-day-frame {
         border-right: none;
     }
 
-    /* Quitar borde de la última fila */
     .fc-daygrid-day-row:last-child .fc-daygrid-day {
         border-bottom: none;
     }
@@ -185,8 +188,54 @@
         text-transform: uppercase;
     }
 
-    /* Los días de la semana en mayúsculas */
     .fc-col-header-cell-cushion {
         text-transform: uppercase;
     }
+}
+
+.no-events {
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.no-events p {
+    font-size: 18px;
+    color: #757575;
+}
+
+.mat-mdc-dialog-content {
+    max-height: 100vh !important;
+}
+
+.mat-mdc-dialog-actions {
+    padding: 24px 0 0 0 !important;
+}
+
+.color-box {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 8px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.select-primary {
+    background-color: $primary;
+}
+
+.select-warning {
+    background-color: $warning;
+}
+
+.select-success {
+    background-color: $success;
+}
+
+.select-danger {
+    background-color: $error;
 }

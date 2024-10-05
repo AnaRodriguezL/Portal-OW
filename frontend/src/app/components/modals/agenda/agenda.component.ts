@@ -1,16 +1,35 @@
-import { Component, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
     selector: 'app-agenda',
     templateUrl: './agenda.component.html'
 })
 export class AgendaComponent {
-    constructor(
-        public dialogRef: MatDialogRef<AgendaComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: any) { }
+    eventForm: FormGroup;
 
-    onNoClick(): void {
+    constructor(
+        private fb: FormBuilder,
+        public dialogRef: MatDialogRef<AgendaComponent>
+    ) {
+        this.eventForm = this.fb.group({
+            title: ['', Validators.required],
+            date: ['', Validators.required],
+            time: ['', Validators.required],
+            description: [''],
+            completed: [false],
+            color: ['primary']
+        });
+    }
+
+    onCancel(): void {
         this.dialogRef.close();
+    }
+
+    onSubmit(): void {
+        if (this.eventForm.valid) {
+            this.dialogRef.close(this.eventForm.value);
+        }
     }
 }

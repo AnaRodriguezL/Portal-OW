@@ -51,16 +51,19 @@ export class HomeComponent {
 
     handleDateClick(arg: any) {
         const dialogRef = this.dialog.open(AgendaComponent, {
-            width: '250px',
-            data: { title: '', subtext: '', time: '' }
+            width: '500px',
+            data: {} // Puedes pasar datos aquí si es necesario
         });
 
         dialogRef.afterClosed().subscribe(result => {
             if (result) {
                 const newEvent = {
                     title: result.title,
-                    date: arg.dateStr,
-                    extendedProps: { subtext: result.subtext }
+                    date: result.date,
+                    time: result.time,
+                    extendedProps: { subtext: result.description },
+                    color: result.color,
+                    completed: result.completed
                 };
 
                 this.calendarOptions = {
@@ -71,10 +74,13 @@ export class HomeComponent {
                 const newAgendaItem = {
                     id: this.agendaItems.length + 1,
                     time: result.time,
-                    color: 'primary',
+                    date: result.date,
+                    color: result.color,
                     title: result.title,
-                    subtext: result.subtext
+                    subtext: result.description,
+                    completed: result.completed
                 };
+
                 this.agendaItems.push(newAgendaItem);
             }
         });

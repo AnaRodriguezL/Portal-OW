@@ -1,25 +1,83 @@
-<h1 mat-dialog-title>Agregar Evento</h1>
+<div mat-dialog-content class="mat-mdc-card-content p-32">
+	<form [formGroup]="eventForm">
+		<mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block"
+			>Título</mat-label
+		>
+		<mat-form-field appearance="outline" class="w-100" color="primary">
+			<input matInput formControlName="title" />
+		</mat-form-field>
 
-<div mat-dialog-content>
-	<mat-form-field appearance="fill">
-		<mat-label>Título del Evento</mat-label>
-		<input matInput [(ngModel)]="data.title" />
-	</mat-form-field>
+		<mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block"
+			>Fecha</mat-label
+		>
+		<mat-form-field appearance="outline" class="w-100" color="primary">
+			<input matInput formControlName="date" [matDatepicker]="picker" />
+			<mat-datepicker-toggle
+				matSuffix
+				[for]="picker"
+			></mat-datepicker-toggle>
+			<mat-datepicker #picker></mat-datepicker>
+		</mat-form-field>
 
-	<mat-form-field appearance="fill">
-		<mat-label>Descripción</mat-label>
-		<textarea matInput [(ngModel)]="data.subtext"></textarea>
-	</mat-form-field>
+		<mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block"
+			>Hora</mat-label
+		>
+		<mat-form-field appearance="outline" class="w-100" color="primary">
+			<input matInput formControlName="time" type="time" />
+		</mat-form-field>
 
-	<mat-form-field appearance="fill">
-		<mat-label>Hora</mat-label>
-		<input matInput type="time" [(ngModel)]="data.time" />
-	</mat-form-field>
-</div>
+		<mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block"
+			>Descripción</mat-label
+		>
+		<mat-form-field appearance="outline" class="w-100" color="primary">
+			<textarea matInput formControlName="description"></textarea>
+		</mat-form-field>
 
-<div mat-dialog-actions>
-	<button mat-button (click)="onNoClick()">Cancelar</button>
-	<button mat-button [mat-dialog-close]="data" cdkFocusInitial>
-		Agregar
-	</button>
+		<mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block"
+			>Color</mat-label
+		>
+		<mat-form-field appearance="outline" class="w-100" color="primary">
+			<mat-select formControlName="color">
+				<mat-option [ngClass]="'primary'" value="primary">
+					<span class="color-box select-primary"></span> Normal
+				</mat-option>
+				<mat-option [ngClass]="'warning'" value="warning">
+					<span class="color-box select-warning"></span> Media
+				</mat-option>
+				<mat-option [ngClass]="'success'" value="success">
+					<span class="color-box select-success"></span> Baja
+				</mat-option>
+				<mat-option [ngClass]="'danger'" value="danger">
+					<span class="color-box select-danger"></span> Urgente
+				</mat-option>
+			</mat-select>
+		</mat-form-field>
+
+		<mat-checkbox formControlName="completed" color="primary" style="margin-left: -10px !important;">¿Tarea completada?</mat-checkbox>
+
+		<div mat-dialog-actions class="row">
+			<div class="col-md-6">
+				<button
+					mat-flat-button
+					color="accent"
+					class="w-100 m-b-4"
+					(click)="onCancel()"
+				>
+					Cancelar
+				</button>
+			</div>
+
+			<div class="col-md-6">
+				<button
+					mat-flat-button
+					color="primary"
+					class="w-100 m-b-4"
+					(click)="onSubmit()"
+					[disabled]="!eventForm.valid"
+				>
+					Agregar
+				</button>
+			</div>
+		</div>
+	</form>
 </div>
