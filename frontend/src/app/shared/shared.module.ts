@@ -18,6 +18,8 @@ import { MaterialModule } from '../material.module';
  */
 import { IconsModule } from '../icons.module';
 
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
+
 import { NgxDropzoneModule } from 'ngx-dropzone';
 
 /**
@@ -54,13 +56,15 @@ registerLocaleData(localeEs);
         MaterialModule,
         IconsModule,
         FullCalendarModule,
-        NgxDropzoneModule
+        NgxDropzoneModule,
+        PickerModule
     ],
     exports: [
         CommonModule,
         MaterialModule,
         IconsModule,
         FullCalendarModule,
+        NgxDropzoneModule,
         AppNavItemComponent,
         BrandingComponent
     ],

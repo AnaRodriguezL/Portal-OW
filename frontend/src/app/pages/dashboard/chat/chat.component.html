@@ -1,35 +1,96 @@
+<!-- src/app/chat/chat.component.html -->
 <div class="chat-container">
-	<mat-card class="cardWithShadow chat-card">
-		<mat-card-header>
-			<mat-card-title>Chat con Amigo</mat-card-title>
-		</mat-card-header>
+    <!-- Lista de Chats -->
+    <div class="chats-list">
+        <mat-card class="cardWithShadow">
+            <mat-card-content>
+                <h2>Chats</h2>
+                <div *ngIf="chats.length === 0" class="no-chats">
+                    <p>😔 No hay chats abiertos</p>
+                    <button mat-flat-button color="primary" (click)="createNewChat()">
+                        Crear Nuevo Chat
+                    </button>
+                </div>
+                <mat-list *ngIf="chats.length > 0">
+                    <mat-list-item *ngFor="let chat of chats" (click)="selectChat(chat)"
+                        [class.active]="selectedChat?.id === chat.id">
+                        <img matListAvatar [src]="chat.friendPhoto" alt="{{ chat.friendName }}">
+                        <div matLine>{{ chat.friendName }}</div>
+                        <div matLine class="last-message">{{ chat.lastMessage }}</div>
+                        <span class="timestamp">{{ chat.lastTimestamp | date:'shortTime' }}</span>
+                    </mat-list-item>
+                </mat-list>
+            </mat-card-content>
+        </mat-card>
+    </div>
 
-		<mat-card-content class="messages-container">
-			<div
-				*ngFor="let message of messages"
-				class="message"
-				[ngClass]="{
-					'user-message': message.sender === 'User',
-					'friend-message': message.sender === 'Friend'
-				}"
-			>
-				<span class="message-text">{{ message.text }}</span>
-				<span class="message-timestamp">{{ message.timestamp }}</span>
-			</div>
-		</mat-card-content>
+    <!-- Ventana de Chat -->
+    <div class="chat-window" *ngIf="selectedChat; else noChatSelected">
+        <mat-card class="cardWithShadow">
+            <!-- Encabezado del Chat -->
+            <mat-card-header>
+                <div class="chat-header">
+                    <img [src]="selectedChat.friendPhoto" alt="{{ selectedChat.friendName }}" class="friend-photo">
+                    <div class="friend-info">
+                        <h3>{{ selectedChat.friendName }}</h3>
+                        <p>{{ selectedChat.friendPosition }}</p>
+                        <span [ngClass]="{'active': selectedChat.isActive, 'inactive': !selectedChat.isActive}">
+                            {{ selectedChat.isActive ? 'Activo' : 'Inactivo' }}
+                        </span>
+                    </div>
+                </div>
+            </mat-card-header>
 
-		<mat-card-actions>
-			<mat-form-field appearance="fill" class="message-input">
-				<textarea
-					matInput
-					[(ngModel)]="newMessage"
-					(keyup.enter)="sendMessage()"
-					placeholder="Escribe un mensaje..."
-				></textarea>
-			</mat-form-field>
-			<button mat-icon-button (click)="sendMessage()">
-				<mat-icon>send</mat-icon>
-			</button>
-		</mat-card-actions>
-	</mat-card>
+            <!-- Contenedor de Mensajes -->
+            <mat-card-content class="messages-container" #messagesContainer>
+                <div *ngFor="let message of selectedChat.messages" class="message" [ngClass]="{
+            'user-message': message.sender === 'User',
+            'friend-message': message.sender === 'Friend'
+          }">
+                    <div class="message-content">
+                        <ng-container [ngSwitch]="message.type">
+                            <span *ngSwitchCase="'text'">{{ message.text }}</span>
+                            <img *ngSwitchCase="'image'" [src]="message.fileUrl" alt="Imagen" class="message-image">
+                            <video *ngSwitchCase="'video'" controls class="message-video">
+                                <source [src]="message.fileUrl" type="video/mp4">
+                                Tu navegador no soporta el elemento de video.
+                            </video>
+                            <a *ngSwitchCase="'file'" [href]="message.fileUrl" download class="message-file">
+                                📄 Descargar archivo
+                            </a>
+                        </ng-container>
+                        <span class="message-timestamp">{{ message.timestamp | date:'shortTime' }}</span>
+                    </div>
+                </div>
+            </mat-card-content>
+
+            <!-- Área de Envío de Mensajes -->
+            <mat-card-actions class="chat-actions">
+                <button mat-icon-button (click)="toggleEmojiPicker()">
+                    <mat-icon>emoji_emotions</mat-icon>
+                </button>
+                <input type="file" #fileInput (change)="onFileSelected($event)" hidden>
+                <button mat-icon-button (click)="fileInput.click()">
+                    <mat-icon>attach_file</mat-icon>
+                </button>
+                <input matInput placeholder="Escribe un mensaje..." [(ngModel)]="newMessage"
+                    (keyup.enter)="sendMessage()">
+                <button mat-icon-button color="primary" (click)="sendMessage()">
+                    <mat-icon>send</mat-icon>
+                </button>
+            </mat-card-actions>
+
+            <!-- Selector de Emojis -->
+            <div *ngIf="showEmojiPicker" class="emoji-picker">
+                <!-- <emoji-mart [set]="'apple'" (emojiClick)="addEmoji($event)"></emoji-mart> -->
+            </div>
+        </mat-card>
+    </div>
+
+    <!-- Mensaje cuando no hay chat seleccionado -->
+    <ng-template #noChatSelected>
+        <div class="no-chat-selected">
+            <p>Selecciona un chat para comenzar la conversación.</p>
+        </div>
+    </ng-template>
 </div>
