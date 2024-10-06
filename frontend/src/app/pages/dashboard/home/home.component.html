@@ -8,7 +8,7 @@
 
                         <div *ngIf="!agendaItems || agendaItems.length === 0" class="no-events">
                             <p>😔 No hay eventos el día de hoy</p>
-                            <button mat-flat-button color="primary" class="m-t-20">
+                            <button mat-flat-button color="primary" class="m-t-20" (click)="handleDateClick()">
                                 Crear nuevo evento
                             </button>
                         </div>

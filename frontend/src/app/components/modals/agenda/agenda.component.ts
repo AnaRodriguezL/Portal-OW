@@ -6,12 +6,12 @@ import { MatDialogRef } from '@angular/material/dialog';
     selector: 'app-agenda',
     templateUrl: './agenda.component.html'
 })
-export class AgendaComponent {
+export class AgendaComponentModal {
     eventForm: FormGroup;
 
     constructor(
         private fb: FormBuilder,
-        public dialogRef: MatDialogRef<AgendaComponent>
+        public dialogRef: MatDialogRef<AgendaComponentModal>
     ) {
         this.eventForm = this.fb.group({
             title: ['', Validators.required],

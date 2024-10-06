@@ -1,0 +1,74 @@
+.upload-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+
+    .custom-dropzone {
+        border: 0;
+        background-color: #eaf4ff;
+        border-radius: 20px;
+        padding: 20px;
+        text-align: center;
+        cursor: pointer;
+        width: 200px; // Ajusta el tamaño a tu preferencia
+        height: 150px;
+        position: relative;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background-color: #d6ebff;
+            border-color: #0056b3;
+        }
+
+        .dropzone-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .upload-icon {
+            font-size: 48px;
+            color: #007bff;
+        }
+
+        .upload-text {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #007bff;
+        }
+    }
+
+    .upload-hint {
+        margin-top: 10px;
+        font-size: 14px;
+        color: #555;
+    }
+
+    ngx-dropzone-preview {
+        display: inline-block;
+        margin: 10px;
+    }
+}
+
+.uploaded-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.uploaded-preview {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.fab-button {
+    position: fixed !important;
+    bottom: 16px;
+    right: 16px;
+}
+

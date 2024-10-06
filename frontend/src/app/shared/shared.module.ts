@@ -18,6 +18,8 @@ import { MaterialModule } from '../material.module';
  */
 import { IconsModule } from '../icons.module';
 
+import { NgxDropzoneModule } from 'ngx-dropzone';
+
 /**
  * Módulo del calendario
  */
@@ -33,7 +35,8 @@ import { BrandingComponent } from '../components/sidebar/branding.component';
 /**
  * Modales
  */
-import { AgendaComponent } from '../components/modals/agenda/agenda.component';
+import { AgendaComponentModal } from '../components/modals/agenda/agenda.component';
+import { ServicesComponentModal } from '../components/modals/services/services.component';
 
 registerLocaleData(localeEs);
 
@@ -41,13 +44,15 @@ registerLocaleData(localeEs);
     declarations: [
         AppNavItemComponent,
         BrandingComponent,
-        AgendaComponent
+        AgendaComponentModal,
+        ServicesComponentModal
     ],
     imports: [
         CommonModule,
         MaterialModule,
         IconsModule,
-        FullCalendarModule
+        FullCalendarModule,
+        NgxDropzoneModule
     ],
     exports: [
         CommonModule,

@@ -1,34 +1,39 @@
 <div class="row">
-	<div class="col-lg-12">
-		<mat-card class="cardWithShadow">
-			<mat-card-content class="p-24">
-				<div class="row">
-					<div
-						class="col-lg-4 col-sm-6"
-						*ngFor="let element of serviceItems"
-					>
-						<!-- Usar *ngFor aquí -->
-						<mat-card class="b-1 shadow-none">
-							<mat-card-header>
-								<img
-									[src]="element.icon"
-									alt="users"
-									width="50"
-									class="rounded-circle"
-								/>
-								<div class="m-l-16">
-									<mat-card-title>
-										{{ element.name }}
-									</mat-card-title>
-								</div>
-							</mat-card-header>
-							<mat-card-content class="b-t-1" style="text-align: justify;">
-										{{ element.description }}
-							</mat-card-content>
-						</mat-card>
-					</div>
-				</div>
-			</mat-card-content>
-		</mat-card>
-	</div>
+    <div class="col-lg-12">
+        <mat-card class="cardWithShadow">
+            <mat-card-content class="p-24">
+
+                <div *ngIf="!serviceItems || serviceItems.length === 0" class="no-events" (click)="openAddServiceModal()">
+                    <p>😔 No hay servicios creados</p>
+                    <button mat-flat-button color="primary" class="m-t-20">
+                        Crear nuevo servicio
+                    </button>
+                </div>
+
+                <div *ngIf="serviceItems && serviceItems.length > 0">
+                    <div class="row">
+                        <div class="col-lg-4 col-sm-6" *ngFor="let serviceItem of serviceItems">
+                            <!-- Usar *ngFor aquí -->
+                            <mat-card class="b-1 shadow-none">
+                                <mat-card-header>
+                                    <img [src]="serviceItem.icon" alt="users" width="50" class="rounded-circle" />
+                                    <div class="m-l-16">
+                                        <mat-card-title>
+                                            {{ serviceItem.name }}
+                                        </mat-card-title>
+                                    </div>
+                                </mat-card-header>
+                                <mat-card-content class="b-t-1" style="text-align: justify;">
+                                    {{ serviceItem.description }}
+                                </mat-card-content>
+                            </mat-card>
+                        </div>
+                    </div>
+                    <button mat-fab color="primary" class="fab-button" (click)="openAddServiceModal()">
+                        <tabler-icon name="plus" class="plus-icon"></tabler-icon>
+                    </button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
 </div>

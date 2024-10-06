@@ -5,7 +5,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 
 import { MatDialog } from '@angular/material/dialog';
-import { AgendaComponent } from '../../../components/modals/agenda/agenda.component';
+import { AgendaComponentModal } from '../../../components/modals/agenda/agenda.component';
 
 import { SharedModule } from '../../../shared/shared.module';
 
@@ -49,8 +49,8 @@ export class HomeComponent {
         };
     }
 
-    handleDateClick(arg: any) {
-        const dialogRef = this.dialog.open(AgendaComponent, {
+    handleDateClick() {
+        const dialogRef = this.dialog.open(AgendaComponentModal, {
             width: '500px',
             data: {} // Puedes pasar datos aquí si es necesario
         });
