@@ -1,19 +1,23 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+
 import { SharedModule } from '../../../shared/shared.module';
 
-import { serviceItems } from './service-items/service-data';
 import { serviceItem } from './service-items/service-item';
+import { serviceItems } from './service-items/service-data';
 
-import { ServicesComponentModal } from '../../../components/modals/services/services.component';
-import { MatDialog } from '@angular/material/dialog';
+import { AddServiceModalComponent } from '../../../components/modals/add-service-modal/add-service-modal.component';
 
 @Component({
     selector: 'app-services',
     standalone: true,
-    imports: [SharedModule],
+    imports: [
+        SharedModule
+    ],
     templateUrl: './services.component.html',
 })
 export class ServicesComponent {
+
     serviceItems: serviceItem[] = serviceItems;
 
     displayedColumns: string[] = ['name', 'description'];
@@ -31,7 +35,7 @@ export class ServicesComponent {
     }
 
     openAddServiceModal() {
-        const dialogRef = this.dialog.open(ServicesComponentModal, {
+        const dialogRef = this.dialog.open(AddServiceModalComponent, {
             width: '500px',
         });
 

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AgendaComponent } from './agenda.component';
+import { AddServiceModalComponent } from './add-service-modal.component';
 
-describe('AgendaComponent', () => {
-    let component: AgendaComponent;
-    let fixture: ComponentFixture<AgendaComponent>;
+describe('AddServiceModalComponent', () => {
+    let component: AddServiceModalComponent;
+    let fixture: ComponentFixture<AddServiceModalComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [AgendaComponent]
+            imports: [AddServiceModalComponent]
         })
             .compileComponents();
 
-        fixture = TestBed.createComponent(AgendaComponent);
+        fixture = TestBed.createComponent(AddServiceModalComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

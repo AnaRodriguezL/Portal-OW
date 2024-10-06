@@ -35,8 +35,9 @@ import { BrandingComponent } from '../components/sidebar/branding.component';
 /**
  * Modales
  */
-import { AgendaComponentModal } from '../components/modals/agenda/agenda.component';
-import { ServicesComponentModal } from '../components/modals/services/services.component';
+import { AddAgendaModalComponent } from '../components/modals/add-agenda-modal/add-agenda-modal.component';
+import { AddServiceModalComponent } from '../components/modals/add-service-modal/add-service-modal.component';
+import { CollaboratorModalComponent } from '../components/modals/collaborator-modal/collaborator-modal.component';
 
 registerLocaleData(localeEs);
 
@@ -44,8 +45,9 @@ registerLocaleData(localeEs);
     declarations: [
         AppNavItemComponent,
         BrandingComponent,
-        AgendaComponentModal,
-        ServicesComponentModal
+        AddAgendaModalComponent,
+        AddServiceModalComponent,
+        CollaboratorModalComponent
     ],
     imports: [
         CommonModule,

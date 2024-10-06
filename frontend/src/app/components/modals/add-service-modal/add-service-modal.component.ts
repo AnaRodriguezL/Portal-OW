@@ -1,27 +1,18 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { serviceItem } from '../../../pages/dashboard/services/service-items/service-item';
 
 @Component({
-    selector: 'app-services',
-    templateUrl: './services.component.html'
+    selector: 'app-add-service-modal',
+    templateUrl: './add-service-modal.component.html'
 })
-export class ServicesComponentModal {
+export class AddServiceModalComponent {
+
     serviceForm: FormGroup;
     files: File[] = [];
-imagePreview: any;
-
-    constructor(
-        private fb: FormBuilder,
-        private dialogRef: MatDialogRef<ServicesComponentModal>
-    ) {
-        this.serviceForm = this.fb.group({
-            name: ['', Validators.required],
-            description: ['', Validators.required],
-            category: ['', Validators.required]
-        });
-    }
+    imagePreview: any;
 
     onFileDropped(event: any) {
         this.files = event.addedFiles;
@@ -47,5 +38,16 @@ imagePreview: any;
 
             this.dialogRef.close(newService);
         }
+    }
+
+    constructor(
+        private fb: FormBuilder,
+        private dialogRef: MatDialogRef<AddServiceModalComponent>
+    ) {
+        this.serviceForm = this.fb.group({
+            name: ['', Validators.required],
+            description: ['', Validators.required],
+            category: ['', Validators.required]
+        });
     }
 }
