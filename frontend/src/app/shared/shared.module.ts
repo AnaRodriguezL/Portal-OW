@@ -39,6 +39,7 @@ import { BrandingComponent } from '../components/sidebar/branding.component';
  */
 import { AddAgendaModalComponent } from '../components/modals/add-agenda-modal/add-agenda-modal.component';
 import { AddServiceModalComponent } from '../components/modals/add-service-modal/add-service-modal.component';
+import { ClienteDetailsComponent } from '../components/modals/client-modal/client-modal.component';
 import { CollaboratorModalComponent } from '../components/modals/collaborator-modal/collaborator-modal.component';
 
 registerLocaleData(localeEs);
@@ -49,6 +50,7 @@ registerLocaleData(localeEs);
         BrandingComponent,
         AddAgendaModalComponent,
         AddServiceModalComponent,
+        ClienteDetailsComponent,
         CollaboratorModalComponent
     ],
     imports: [

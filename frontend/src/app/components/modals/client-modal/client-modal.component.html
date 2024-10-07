@@ -1,0 +1,155 @@
+<!-- src/app/clientes/components/cliente-details/cliente-details.component.html -->
+<h1 mat-dialog-title>Detalles del Cliente</h1>
+<div mat-dialog-content>
+    <mat-tab-group>
+        <mat-tab label="Información General">
+            <div class="general-info">
+                <img [src]="cliente.photo" alt="cliente" width="100" class="rounded-circle" />
+                <h2>{{ cliente.fullName }}</h2>
+                <p><strong>Cargo:</strong> {{ cliente.position }}</p>
+                <p><strong>Email:</strong> {{ cliente.email }}</p>
+                <p><strong>Teléfono:</strong> {{ cliente.phone }}</p>
+                <p><strong>País:</strong> {{ cliente.country }}</p>
+            </div>
+        </mat-tab>
+        <mat-tab label="Contacto">
+            <form [formGroup]="contactoForm" (ngSubmit)="saveContacto()">
+                <mat-form-field appearance="fill">
+                    <mat-label>Nombre Completo</mat-label>
+                    <input matInput formControlName="fullName">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Teléfono</mat-label>
+                    <input matInput formControlName="phone">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Dirección</mat-label>
+                    <input matInput formControlName="address">
+                </mat-form-field>
+
+                <button mat-raised-button color="primary" type="submit" [disabled]="contactoForm.invalid">
+                    Guardar Cambios
+                </button>
+            </form>
+        </mat-tab>
+        <mat-tab label="Tributario">
+            <div class="tributario-section">
+                <table mat-table [dataSource]="cliente.tributario" class="mat-elevation-z8">
+
+                    <!-- Fecha de Pago Column -->
+                    <ng-container matColumnDef="fechaPago">
+                        <th mat-header-cell *matHeaderCellDef>Fecha de Pago</th>
+                        <td mat-cell *matCellDef="let element">{{ element.fechaPago | date }}</td>
+                    </ng-container>
+
+                    <!-- Monto Column -->
+                    <ng-container matColumnDef="monto">
+                        <th mat-header-cell *matHeaderCellDef>Monto</th>
+                        <td mat-cell *matCellDef="let element">{{ element.monto | currency:'COP' }}</td>
+                    </ng-container>
+
+                    <!-- Método de Pago Column -->
+                    <ng-container matColumnDef="metodoPago">
+                        <th mat-header-cell *matHeaderCellDef>Método de Pago</th>
+                        <td mat-cell *matCellDef="let element">{{ element.metodoPago }}</td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="tributarioDisplayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: tributarioDisplayedColumns;"></tr>
+                </table>
+            </div>
+        </mat-tab>
+        <mat-tab label="Servicio">
+            <div class="servicios-section">
+                <div class="service-item" *ngFor="let servicio of cliente.servicios">
+                    <mat-icon>{{ servicio.icon }}</mat-icon>
+                    <div>
+                        <h3>{{ servicio.nombre }}</h3>
+                        <p>{{ servicio.descripcion }}</p>
+                    </div>
+                    <button mat-icon-button color="warn" (click)="removeServicio(servicio.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+                <button mat-button color="primary" (click)="addServicio()">Agregar Servicio</button>
+            </div>
+        </mat-tab>
+        <mat-tab label="Componentes">
+            <div class="componentes-section">
+                <table mat-table [dataSource]="cliente.componentes" class="mat-elevation-z8">
+
+                    <!-- Icono Column -->
+                    <ng-container matColumnDef="icon">
+                        <th mat-header-cell *matHeaderCellDef>Icono</th>
+                        <td mat-cell *matCellDef="let element"><mat-icon>{{ element.icon }}</mat-icon></td>
+                    </ng-container>
+
+                    <!-- Nombre Column -->
+                    <ng-container matColumnDef="nombre">
+                        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+                        <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
+                    </ng-container>
+
+                    <!-- Descripción Column -->
+                    <ng-container matColumnDef="descripcion">
+                        <th mat-header-cell *matHeaderCellDef>Descripción</th>
+                        <td mat-cell *matCellDef="let element">{{ element.descripcion }}</td>
+                    </ng-container>
+
+                    <!-- Fecha de Instalación Column -->
+                    <ng-container matColumnDef="fechaInstalacion">
+                        <th mat-header-cell *matHeaderCellDef>Fecha de Instalación</th>
+                        <td mat-cell *matCellDef="let element">{{ element.fechaInstalacion | date }}</td>
+                    </ng-container>
+
+                    <!-- Fecha de Vigencia Column -->
+                    <ng-container matColumnDef="fechaVigencia">
+                        <th mat-header-cell *matHeaderCellDef>Fecha de Vigencia</th>
+                        <td mat-cell *matCellDef="let element">{{ element.fechaVigencia | date }}</td>
+                    </ng-container>
+
+                    <!-- Precio Column -->
+                    <ng-container matColumnDef="precio">
+                        <th mat-header-cell *matHeaderCellDef>Precio (COP)</th>
+                        <td mat-cell *matCellDef="let element">{{ element.precio | currency:'COP' }}</td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="componentesDisplayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: componentesDisplayedColumns;"></tr>
+                </table>
+                <button mat-button color="primary" (click)="addComponente()">Agregar Componente</button>
+            </div>
+        </mat-tab>
+        <mat-tab label="Actividades">
+            <div class="actividades-section">
+                <mat-list>
+                    <mat-list-item *ngFor="let actividad of cliente.actividades">
+                        <h4 matLine>{{ actividad.titulo }}</h4>
+                        <p matLine>{{ actividad.descripcion }}</p>
+                        <!-- <mat-chip-list>
+                            <mat-chip *ngFor="let comentario of actividad.comentarios">{{ comentario.autor }}: {{
+                                comentario.contenido }}</mat-chip>
+                        </mat-chip-list> -->
+                        <mat-select [(value)]="actividad.estado">
+                            <mat-option value="Pendiente">Pendiente</mat-option>
+                            <mat-option value="En Progreso">En Progreso</mat-option>
+                            <mat-option value="Completada">Completada</mat-option>
+                        </mat-select>
+                        <!-- Implementa la lógica para actualizar el estado -->
+                    </mat-list-item>
+                </mat-list>
+                <button mat-button color="primary" (click)="addActividad()">Agregar Actividad</button>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="close()">Cerrar</button>
+</div>
