@@ -7,6 +7,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
+// CRUD
+import { ApiService } from '../../../services/api.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
     selector: 'app-register',
@@ -18,26 +21,33 @@ export class RegisterComponent {
 
   registerForm: FormGroup;
   registroExitoso = false;
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private apiService:ApiService) {
     this.registerForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+      name: ['', Validators.required],
+      lastname: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
       terms: [false, Validators.requiredTrue]
     });
   }
 
-  onSubmit(): void {
+  async onSubmit() {
     if (this.registerForm.valid) {
       const formValues = this.registerForm.value;
       console.log('Formulario enviado:', formValues);
-      // Lógica para registrar al usuario.
+      const { terms, ...rest } = formValues;
+      try {
+        const data = await firstValueFrom(this.apiService.postData("Users/signup/",rest));
+        // Guardar el token en localStorage
+        localStorage.setItem('token', data.token);
+        console.log('Register successful:', data);
+        this.registroExitoso = true;
+      } catch (error) {
+        console.error('Register failed:', error);
+      }
     } else {
       console.log('El formulario no es válido.');
     }
   }
-  exito(): void {
-    this.registroExitoso = true;
-  }
+
 }

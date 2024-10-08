@@ -1,72 +1,144 @@
-<div class="register-container">
-    <div class="register-box" *ngIf="!registroExitoso">
-      <h2>Regístrate en OW</h2>
-      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-        <div class="input-group">
-          <input
-            type="text"
-            placeholder="Nombre"
-            formControlName="firstName"
-            [class.is-invalid]="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched" />
-          <div *ngIf="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched" class="invalid-feedback">
-            El nombre es requerido.
-          </div>
+<div class="container">
+  <div class="form-container" *ngIf="!registroExitoso">
+    <h2 class="title">Regístrate en OW</h2>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="input-group">
+        <label for="nombre">Nombre</label>
+        <input
+          id="nombre"
+          type="text"
+          formControlName="name"
+          [class.is-invalid]="registerForm.get('name')?.invalid && registerForm.get('name')?.touched" />
+          <img src="assets/user.ico" class="input-icon"/>
+        <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched" class="invalid-feedback">
+          El nombre es requerido.
         </div>
-  
-        <div class="input-group">
-          <input
-            type="text"
-            placeholder="Apellido"
-            formControlName="lastName"
-            [class.is-invalid]="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched" />
-          <div *ngIf="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched" class="invalid-feedback">
-            El apellido es requerido.
-          </div>
+      </div>
+
+      <div class="input-group">
+        <label for="apellido">Apellido</label>
+        <input
+          id="apellido"
+          type="text"
+          formControlName="lastname"
+          [class.is-invalid]="registerForm.get('lastname')?.invalid && registerForm.get('lastname')?.touched" />
+          <img src="assets/user.ico" class="input-icon"/>
+        <div *ngIf="registerForm.get('lastname')?.invalid && registerForm.get('lastname')?.touched" class="invalid-feedback">
+          El apellido es requerido.
         </div>
-  
-        <div class="input-group">
-          <input
-            type="email"
-            placeholder="Correo"
-            formControlName="email"
-            [class.is-invalid]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" />
-          <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="invalid-feedback">
-            El correo es requerido.
-          </div>
+      </div>
+
+      <div class="input-group">
+        <label for="email">Correo Electronico</label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          [class.is-invalid]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" />
+            <!-- Propiedades del icon del correo -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="input-icon"
+              viewBox="0 -960 960 960"
+              fill="#e8eaed"
+            >
+            <path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-400L480-440Zm0-80 320-200H160l320 200ZM160-640v-80 480-400Z"
+            />
+            </svg>
+        <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="invalid-feedback">
+          El correo es requerido.
         </div>
-  
-        <div class="input-group">
-          <input
-            type="password"
-            placeholder="Contraseña"
-            formControlName="password"
-            [class.is-invalid]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" />
-          <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="invalid-feedback">
-            La contraseña es requerida.
-          </div>
+      </div>
+
+      <div class="input-group">
+        <label for="contrasena">Contraseña</label>
+        <input
+          id="contrasena"
+          type="password"
+          formControlName="password"
+          [class.is-invalid]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" />
+          <!-- Propiedades del icon del password -->
+          <svg xmlns="http://www.w3.org/2000/svg"
+          class="input-icon"
+          viewBox="0 -960 960 960"
+          fill="#e8eaed">
+          <path d="M240-80q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640h40v-80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720v80h40q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240Zm0-80h480v-400H240v400Zm240-120q33 0 56.5-23.5T560-360q0-33-23.5-56.5T480-440q-33 0-56.5 23.5T400-360q0 33 23.5 56.5T480-280ZM360-640h240v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80ZM240-160v-400 400Z"
+          />
+        </svg>
+        <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="invalid-feedback">
+          La contraseña es requerida.
         </div>
-  
-        <div class="options">
-          <label>
-            <input type="checkbox" formControlName="terms" /> Acepto términos y condiciones
-          </label>
-        </div>
-  
-        <div *ngIf="registerForm.get('terms')?.invalid && registerForm.get('terms')?.touched" class="invalid-feedback">
-          Debes aceptar los términos y condiciones.
-        </div>
-  
-        <div class="actions">
-          <button type="button" class="register-btn" (click)="exito()">Registrarse</button>
-          <button type="button" class="login-btn" [routerLink]="['/login']">Ingresar</button>
-        </div>
-      </form>
-    </div>
-    <div *ngIf="registroExitoso">
-      <h2>Registro exitoso</h2>
-    </div>
-    <div class="logo-container">
-      <img src="assets/images/Logo.jpg" alt="OW Logo" />
+      </div>
+
+      <div class="options">
+        <label>
+          <input type="checkbox" formControlName="terms" /> Acepto términos y condiciones
+        </label>
+      </div>
+
+      <div *ngIf="registerForm.get('terms')?.invalid && registerForm.get('terms')?.touched" class="invalid-feedback">
+        Debes aceptar los términos y condiciones.
+      </div>
+
+      <div class="actions">
+        <button type="submit" class="register-btn">Registrarse</button>
+        <button type="button" class="ingresar-btn" [routerLink]="['/login']">Ingresar</button>
+      </div>
+    </form>
+  </div>
+  <div class="form-container" *ngIf="registroExitoso">
+    <h2 class="title">¡Felicitaciones!</h2>
+      <p>Ahora podrás acceder a administrar los clientes.</p>
+    <button type="button" class="enter" [routerLink]="['/inicio']">Entrar a Ok Web</button>
+  </div>
+  <div class="logo-container">
+    <img src="assets/images/Logo.jpg" id="img_logo" alt="OW Logo" />
+  </div>
+</div>
+
+
+
+
+
+
+<!--
+<div class="container">
+  <div class="form-container">
+    <div class="title">Regístrate en OW</div>
+    <div class="form">
+      <div class="input-field">
+        <div class="underline"></div>
+        <div class="icon"></div>
+        <div class="label">Nombre</div>
+      </div>
+      <div class="input-field">
+        <div class="underline"></div>
+        <div class="icon"></div>
+        <div class="label">Apellido</div>
+      </div>
+      <div class="input-field">
+        <div class="underline"></div>
+        <div class="icon"></div>
+        <div class="label">Correo</div>
+      </div>
+      <div class="input-field">
+        <div class="underline"></div>
+        <div class="icon"></div>
+        <div class="label">Contraseña</div>
+      </div>
+      <div class="terms">
+        <div class="checkbox"></div>
+        <div class="terms-label">Acepto términos y condiciones</div>
+      </div>
+      <div class="buttons">
+        <div class="button register">Registrarse</div>
+        <div class="button login">Ingresar</div>
+      </div>
     </div>
   </div>
-  
+  <div class="image-container">
+    <img src="assets/images/Logo.jpg" alt="Logo" />
+  </div>
+</div>
+ -->

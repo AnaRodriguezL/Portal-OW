@@ -1,38 +1,79 @@
-.register-container {
-  display: flex;
+p{
+  color: rgba(145, 145, 145, 0.582);
+  font-size: 1rem;
+}
+
+.container {
+  width: 90%;
+  height: 80vh;
+  background: white;
+  display:flex;
   justify-content: space-between;
-  align-items: center;
-  min-height: 100vh;
-  padding: 0 50px;
-  // margin: 40px;
+  // align-items:center;
+  padding: 50px;
+  border-radius: 10px;
+
+
+  //
+
+  // padding: 10px;         // Ajusta el espacio interno de la caja
+  // margin: 10px;          // Ajusta el espacio externo de la caja
+  // width: 300px;          // Ajusta el ancho de la caja
+  // height: auto;          // Ajusta la altura de la caja, manteniendo la proporción de la imagen
+  // box-sizing: border-box
 }
 
-.register-box {
+.form-container {
+  width: 100%;
+  display: flex;
   max-width: 400px;
-  width: 50%;
+  flex-direction: column; // Apilar los elementos (título, subtítulo, botón)
+  justify-content: center;
+  // align-items: center;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  padding: 120px 120px;
+  gap: 20px; // Para ajustar el espaciado entre el título y el subtítulo
+
+  // padding: 10px;         // Ajusta el espacio interno de la caja
+  // margin: 10px;          // Ajusta el espacio externo de la caja
+  // width: 300px;          // Ajusta el ancho de la caja
+  // height: auto;          // Ajusta la altura de la caja, manteniendo la proporción de la imagen
+  // box-sizing: border-box; // Asegura que el padding y el borde se incluyan en las dimensiones de la caja
 }
 
-h2 {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
+.title {
+  width: 365px;
+  color: #1C1D21;
+  font-size: 32px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  line-height: 42px;
+  margin-bottom: 4px; // Reducir el espaciado entre el título y el texto
 }
 
 .input-group {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 365px;
+  gap: 3px;
+  position: relative;
+  color: rgba(145, 145, 145, 0.582);
+
+  input {
+    border: none;
+    border-bottom: 1px solid #ECECF2;
+    font-size: 16px;
+    font-family: "Open Sans", sans-serif;
+    width: 100%;
+    padding: 10px;
+  }
 }
 
-input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  margin-bottom: 5px;
-}
-
-input.is-invalid {
-  border-color: red;
-}
+// input.is-invalid {
+//   border-color: red;
+// }
 
 .invalid-feedback {
   color: red;
@@ -40,32 +81,100 @@ input.is-invalid {
 }
 
 .options {
-  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  width: 365px;
+  margin-top: 30px;
+}
+
+.recover-password {
+  color: #0072A6;
+  text-decoration: none;
 }
 
 .actions {
   display: flex;
   justify-content: space-between;
+  width: 365px;
+  margin-top: 20px;
+}
+
+button {
+  width: 178px;
+  height: 46px;
+  border-radius: 8px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  border: 0px;
 }
 
 .register-btn {
-  background-color: #007bff;
+  background: #0072A6;
   color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
 }
 
-.login-btn {
-  background-color: #ddd;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+.register-btn:hover {
+  background: #5E81F4;
+  color: #ffffff;
+  // background: rgb(74, 140, 240);
+  // color: #056e9e;
 }
 
-.logo-container img {
-  //max-width: 300px;
-  height: auto;
+.ingresar-btn {
+  background: rgb(182, 221, 238);
+  color: #056e9e;
+}
+
+.ingresar-btn:hover {
+  background: #5E81F4;
+  color: #ffffff;
+}
+
+
+.logo-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#img_logo {
+  height: 600px;
+}
+
+.icon {
+  position: absolute;
+  right: 0;
+  top: 36px;
+  color: #000A0F;
+  font-size: 18px;
+  font-family: "la-solid-900";
+  font-weight: 900;
+  text-align: center;
+}
+
+.enter{
+  background: #0072A6;
+  color: white;
+  font-family: "Open Sans", sans-serif;
+  // margin-top: 16px; // Ajustar este valor según lo necesites para la separación con el texto
+  // padding: 10px 20px;
+  // border: none;
+  // border-radius: 5px;
+  // cursor: pointer;
+}
+.enter:hover {
+  background: #5E81F4;
+  color: #ffffff;
+}
+.input-icon {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  left: 340px;
+  top: 5%;
+  color: rgba(145, 145, 145, 0.582);
+  color: #056e9e;
+  // transform: translateY(5%);
 }

@@ -36,6 +36,7 @@ export class LoginComponent {
         // Guardar el token en localStorage
         localStorage.setItem('authToken', data.token);
         console.log('Login successful:', data);
+        this.router.navigate(['/inicio']);
       } catch (error) {
         console.error('Login failed:', error);
       }
