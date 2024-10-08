@@ -1,72 +1,87 @@
+// Estilos para la autenticación
+
+// Clase para el contenedor principal de la autenticación
 .blank-layout-container {
-  height: 100vh;
-  display: flex;
-  background-size: cover;
-  align-items: center;
+    height: 100vh;
+    display: flex;
+    background-size: cover;
+    align-items: center;
 }
 
+// Clase para el título de la autenticación
 .auth-title {
-  font-size: 36px;
-  line-height: 44px;
+    font-size: 36px;
+    line-height: 44px;
 }
 
+// Animación para el gradient de fondo de la autenticación
 @keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 50% 0%;
-  }
-}
-
-.img-height {
-  height: calc(100vh - 83px);
-}
-
-.custom-row {
-  &.row {
-    margin-right: -8px;
-    margin-left: -8px;
-    .col-2,
-    .col-12 {
-      padding-right: 8px;
-      padding-left: 8px;
+    0% {
+        background-position: 0% 50%;
     }
-  }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 50% 0%;
+    }
 }
 
+// Clase para el contenedor de la imagen de fondo de la autenticación
+.img-height {
+    height: calc(100vh - 83px);
+}
+
+// Clase para el contenedor de los elementos de la autenticación
+.custom-row {
+    &.row {
+        margin-right: -8px;
+        margin-left: -8px;
+
+        .col-2,
+        .col-12 {
+            padding-right: 8px;
+            padding-left: 8px;
+        }
+    }
+}
+
+// Clase para el divisor de la autenticación
 .or-border {
-  position: relative;
-  text-align: center;
-  &:before {
-    content: "";
-    position: absolute;
-    left: 0;
-    width: 100px;
-    top: 50%;
-    height: 1px;
-    background: $borderColor;
-  }
-  &:after {
-    content: "";
-    position: absolute;
-    right: 0;
-    width: 100px;
-    top: 50%;
-    height: 1px;
-    background: $borderColor;
-  }
+    position: relative;
+    text-align: center;
+
+    &:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 100px;
+        top: 50%;
+        height: 1px;
+        background: $borderColor;
+    }
+
+    &:after {
+        content: "";
+        position: absolute;
+        right: 0;
+        width: 100px;
+        top: 50%;
+        height: 1px;
+        background: $borderColor;
+    }
 }
 
+// Clase para el contenedor principal de la autenticación
 .boxed-auth {
-  width: 100%;
-  max-width: 480px;
-  margin: 0 auto;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
 }
 
+// Clase para el contenedor del formulario de la autenticación
 .max-width-form {
-  max-width: 450px;
+    max-width: 450px;
 }

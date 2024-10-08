@@ -1,3 +1,9 @@
+/**
+ * Importa los estilos base de Angular Material, los estilos de los temas de
+ * colores, los estilos de los contenedores, los estilos de los layouts, los
+ * estilos de la cuadrícula, los mixins de flexbox y los mixins de utilidades.
+ * Luego importa los estilos de las páginas.
+ */
 @use "@angular/material" as mat;
 @include mat.core();
 
@@ -6,22 +12,27 @@
 @import "helpers/color";
 @import "helpers/icon-size";
 
-//Theme colors
 @import "themecolors/default_theme";
 //@include mat.all-component-themes($bluetheme);
 
-//container layout
 @import "overrides/materialoverrides";
 @import "container";
+
 @import "layouts/layouts";
+
 @import "grid/grid";
+
 @import "helpers/custom-flex";
+
 @import "helpers/index";
 
-
-// pages
-@import "pages/dashboards";
 @import "pages/auth";
 @import "pages/login";
 @import "pages/register";
 
+
+@import "pages/dashboard/home";
+@import "pages/dashboard/clients";
+@import "pages/dashboard/services";
+@import "pages/dashboard/chat";
+@import "pages/dashboard/collaborators";

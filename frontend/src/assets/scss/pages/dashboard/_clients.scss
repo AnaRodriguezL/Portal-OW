@@ -1,0 +1,40 @@
+/* src/app/clientes/components/cliente-details/cliente-details.component.scss */
+.general-info {
+    text-align: center;
+}
+
+.rounded-circle {
+    border-radius: 50%;
+}
+
+.tributario-section,
+.servicios-section,
+.componentes-section,
+.actividades-section {
+    padding: 16px;
+}
+
+.service-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.service-item mat-icon {
+    margin-right: 10px;
+}
+
+mat-list-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+mat-chip-list {
+    margin-top: 10px;
+}
+
+mat-select {
+    margin-top: 10px;
+    width: 200px;
+}

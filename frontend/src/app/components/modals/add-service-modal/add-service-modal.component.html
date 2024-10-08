@@ -1,0 +1,52 @@
+<div mat-dialog-content class="mat-mdc-card-content p-32">
+    <form [formGroup]="serviceForm">
+        <div class="upload-container">
+            <ngx-dropzone *ngIf="files.length === 0" (change)="onFileDropped($event)" class="custom-dropzone" [multiple]="false">
+                <ngx-dropzone-label>
+                    <div class="dropzone-content">
+                        <tabler-icon name="cloud-upload" class="upload-icon"></tabler-icon>
+                    </div>
+                </ngx-dropzone-label>
+            </ngx-dropzone>
+            <div *ngIf="files.length > 0" class="uploaded-image">
+                <img [src]="files[0]" alt="Uploaded Image" class="uploaded-preview"/>
+                <button mat-button color="warn" (click)="onRemove(files[0])" style="margin-top: 10px;">Eliminar imagen</button>
+            </div>
+            <span class="upload-hint" *ngIf="files.length === 0">Subir imagen</span>
+        </div>
+
+        <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Nombre del servicio</mat-label>
+        <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput formControlName="name" placeholder="Ingrese el nombre del servicio" />
+        </mat-form-field>
+
+        <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Descripción del servicio</mat-label>
+        <mat-form-field appearance="outline" class="w-100" color="primary">
+            <textarea matInput formControlName="description"
+                placeholder="Ingrese la descripción del servicio"></textarea>
+        </mat-form-field>
+
+        <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Categoría</mat-label>
+        <mat-form-field appearance="outline" class="w-100" color="primary">
+            <mat-select formControlName="category">
+                <mat-option value="basic">Básico</mat-option>
+                <mat-option value="premium">Premium</mat-option>
+                <mat-option value="enterprise">Empresarial</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div mat-dialog-actions class="row">
+            <div class="col-md-6">
+                <button mat-flat-button color="accent" class="w-100 m-b-4" (click)="onCancel()">
+                    Cancelar
+                </button>
+            </div>
+            <div class="col-md-6">
+                <button mat-flat-button color="primary" class="w-100 m-b-4" (click)="onSubmit()"
+                    [disabled]="!serviceForm.valid">
+                    Agregar
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,94 @@
+<!-- collaborator-details-modal.component.html -->
+<mat-dialog-content class="details-modal">
+    <div class="row">
+        <!-- Sección izquierda: Información básica -->
+        <div class="col-lg-4">
+            <img [src]="data.collaborator.photo" alt="collaborator" class="img-fluid rounded" />
+            <h2>{{ data.collaborator.fullName }}</h2>
+            <h4>{{ data.collaborator.position }}</h4>
+            <p><strong>Email:</strong> {{ data.collaborator.email }}</p>
+            <p><strong>Teléfono:</strong> {{ data.collaborator.phone }}</p>
+            <p><strong>País:</strong> {{ data.collaborator.country }}</p>
+        </div>
+
+        <!-- Sección derecha: Pestañas de detalles -->
+        <div class="col-lg-8">
+            <mat-tab-group>
+                <!-- Pestaña de Información General -->
+                <mat-tab label="Información General">
+                    <form [formGroup]="collaboratorForm">
+                        <mat-form-field class="full-width">
+                            <mat-label>Nombre Completo</mat-label>
+                            <input matInput formControlName="fullName" />
+                        </mat-form-field>
+                        <mat-form-field class="full-width">
+                            <mat-label>Cargo</mat-label>
+                            <input matInput formControlName="position" />
+                        </mat-form-field>
+                        <mat-form-field class="full-width">
+                            <mat-label>Email</mat-label>
+                            <input matInput formControlName="email" />
+                        </mat-form-field>
+                        <mat-form-field class="full-width">
+                            <mat-label>Teléfono</mat-label>
+                            <input matInput formControlName="phone" />
+                        </mat-form-field>
+                        <button mat-flat-button color="primary" (click)="saveGeneralInfo()">
+                            Guardar cambios
+                        </button>
+                    </form>
+                </mat-tab>
+
+                <!-- Pestaña de Seguridad -->
+                <mat-tab label="Seguridad">
+                    <form [formGroup]="securityForm">
+                        <mat-form-field class="full-width">
+                            <mat-label>Contraseña Actual</mat-label>
+                            <input matInput type="password" formControlName="currentPassword" />
+                        </mat-form-field>
+                        <mat-form-field class="full-width">
+                            <mat-label>Nueva Contraseña</mat-label>
+                            <input matInput type="password" formControlName="newPassword" />
+                        </mat-form-field>
+                        <button mat-flat-button color="primary" (click)="updatePassword()">
+                            Actualizar contraseña
+                        </button>
+                    </form>
+                </mat-tab>
+
+                <!-- Pestaña Bancaria -->
+                <mat-tab label="Datos Bancarios">
+                    <form [formGroup]="bankForm">
+                        <mat-form-field class="full-width">
+                            <mat-label>Método de Pago</mat-label>
+                            <input matInput formControlName="paymentMethod" />
+                        </mat-form-field>
+                        <mat-form-field class="full-width">
+                            <mat-label>Banco</mat-label>
+                            <input matInput formControlName="bank" />
+                        </mat-form-field>
+                        <button mat-flat-button color="primary" (click)="saveBankInfo()">
+                            Guardar cambios
+                        </button>
+                    </form>
+
+                    <!-- Historial de Pagos -->
+                    <div class="payment-history">
+                        <h3>Historial de Pagos</h3>
+                        <mat-list>
+                            <mat-list-item *ngFor="
+									let payment of data.collaborator
+										.paymentHistory
+								">
+                                <p>
+                                    Fecha: {{ payment.date }} - Monto:
+                                    {{ payment.amount | currency : "EUR" }}
+                                </p>
+                            </mat-list-item>
+                        </mat-list>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+</mat-dialog-content>
