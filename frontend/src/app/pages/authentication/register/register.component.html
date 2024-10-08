@@ -1,99 +1,72 @@
-<div
-  class="blank-layout-container justify-content-center align-items-center bg-light-primary"
->
-    <div
-        class="position-relative row w-100 h-100 bg-gredient justify-content-center"
-    >
-        <div class="col-lg-4 d-flex align-items-center">
-        <mat-card class="cardWithShadow boxed-auth">
-            <mat-card-content class="p-32">
-            <div class="text-center">
-                <!-- <a [routerLink]="['/dashboard']">
-                <img
-                    src="./assets/images/logos/dark-logo.svg"
-                    class="align-middle m-2"
-                    alt="logo"
-                />
-                </a> -->
-            </div>
-
-            <div class="row m-t-24 custom-row">
-                <div class="col-12 col-sm-6">
-                <button mat-stroked-button class="w-100">
-                    <div class="d-flex align-items-center">
-                    <img
-                        src="/assets/images/svgs/google-icon.svg"
-                        alt="google"
-                        width="16"
-                        class="m-r-8"
-                    />
-                    Sign in with Google
-                    </div>
-                </button>
-                </div>
-                <div class="col-12 col-sm-6">
-                <button
-                    mat-stroked-button
-                    class="w-100 d-flex align-items-center"
-                >
-                    <div class="d-flex align-items-center">
-                    <img
-                        src="/assets/images/svgs/facebook-icon.svg"
-                        alt="facebook"
-                        width="40"
-                        class="m-r-4"
-                    />
-                    Sign in with FB
-                    </div>
-                </button>
-                </div>
-            </div>
-
-            <div class="or-border m-t-30">or sign up with</div>
-
-            <form class="m-t-30">
-                <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block"
-                >Name</mat-label
-                >
-                <mat-form-field appearance="outline" class="w-100" color="primary">
-                <input matInput />
-                </mat-form-field>
-                <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block"
-                >Email Adddress</mat-label
-                >
-                <mat-form-field appearance="outline" class="w-100" color="primary">
-                <input matInput type="email" />
-                </mat-form-field>
-                <!-- password -->
-                <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block"
-                >Password</mat-label
-                >
-                <mat-form-field appearance="outline" class="w-100" color="primary">
-                <input matInput type="password" />
-                </mat-form-field>
-
-                <!-- <a
-                [routerLink]="['/']"
-                mat-flat-button
-                color="primary"
-                class="w-100"
-                >
-                Sign Up
-                </a> -->
-                <!-- input -->
-            </form>
-            <span class="d-block f-w-500 text-center m-t-24"
-                >Already have an Account?
-
-                <!-- <a
-                [routerLink]="['/authentication/login']"
-                class="text-decoration-none text-primary f-w-500 f-s-14"
-                >
-                Sign In</a
-                > -->
-            </span>
-            </mat-card-content>
-        </mat-card>
+<div class="register-container">
+    <div class="register-box" *ngIf="!registroExitoso">
+      <h2>Regístrate en OW</h2>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="input-group">
+          <input
+            type="text"
+            placeholder="Nombre"
+            formControlName="firstName"
+            [class.is-invalid]="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched" />
+          <div *ngIf="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched" class="invalid-feedback">
+            El nombre es requerido.
+          </div>
         </div>
+  
+        <div class="input-group">
+          <input
+            type="text"
+            placeholder="Apellido"
+            formControlName="lastName"
+            [class.is-invalid]="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched" />
+          <div *ngIf="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched" class="invalid-feedback">
+            El apellido es requerido.
+          </div>
+        </div>
+  
+        <div class="input-group">
+          <input
+            type="email"
+            placeholder="Correo"
+            formControlName="email"
+            [class.is-invalid]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" />
+          <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="invalid-feedback">
+            El correo es requerido.
+          </div>
+        </div>
+  
+        <div class="input-group">
+          <input
+            type="password"
+            placeholder="Contraseña"
+            formControlName="password"
+            [class.is-invalid]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" />
+          <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="invalid-feedback">
+            La contraseña es requerida.
+          </div>
+        </div>
+  
+        <div class="options">
+          <label>
+            <input type="checkbox" formControlName="terms" /> Acepto términos y condiciones
+          </label>
+        </div>
+  
+        <div *ngIf="registerForm.get('terms')?.invalid && registerForm.get('terms')?.touched" class="invalid-feedback">
+          Debes aceptar los términos y condiciones.
+        </div>
+  
+        <div class="actions">
+          <button type="button" class="register-btn" (click)="exito()">Registrarse</button>
+          <button type="button" class="login-btn" [routerLink]="['/']">Ingresar</button>
+        </div>
+      </form>
     </div>
-</div>
+    <div *ngIf="registroExitoso">
+      <h2>Registro exitoso</h2>
+    </div>
+    <div class="logo-container">
+      <img src="assets/images/Logo.jpg" alt="OW Logo" />
+    </div>
+  </div>
+  

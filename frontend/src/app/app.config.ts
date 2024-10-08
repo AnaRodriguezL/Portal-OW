@@ -19,13 +19,16 @@ import { appRoutes } from './app.routes';
  */
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { authInterceptor } from './services/auth.interceptor';
+
 export const appConfig: ApplicationConfig = {
     providers: [
+        provideZoneChangeDetection({ eventCoalescing: true }), 
+        provideAnimationsAsync(),
+        provideHttpClient(withInterceptors([authInterceptor])),
         // Detecta cambios en el DOM para que Angular renderice la aplicación
-        provideZoneChangeDetection({ eventCoalescing: true }),
         // Permite navegar entre rutas
         provideRouter(appRoutes),
-        // Permite mostrar animaciones
-        provideAnimationsAsync()
     ]
 };

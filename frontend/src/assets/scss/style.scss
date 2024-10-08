@@ -13,7 +13,7 @@
 @import "helpers/icon-size";
 
 @import "themecolors/default_theme";
-@include mat.all-component-themes($bluetheme);
+//@include mat.all-component-themes($bluetheme);
 
 @import "overrides/materialoverrides";
 @import "container";
@@ -27,6 +27,10 @@
 @import "helpers/index";
 
 @import "pages/auth";
+@import "pages/login";
+@import "pages/register";
+
+
 @import "pages/dashboard/home";
 @import "pages/dashboard/clients";
 @import "pages/dashboard/services";
