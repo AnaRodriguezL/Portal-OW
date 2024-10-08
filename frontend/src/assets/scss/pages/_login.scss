@@ -7,6 +7,7 @@
   align-items:center;
   padding: 50px;
   border-radius: 10px;
+  box-sizing: unset;
 }
 
 .login-box {
@@ -20,6 +21,7 @@
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   padding: 120px 120px;
+  box-sizing: inherit;
   // border-radius: 10px;
   // box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
