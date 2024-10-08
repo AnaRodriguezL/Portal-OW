@@ -16,8 +16,7 @@ import { ApiService } from './services/api.service';
     standalone: true,
     imports: [RouterOutlet, FormsModule, ReactiveFormsModule],
     providers: [ApiService],
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.css'
+    templateUrl: './app.component.html'
 })
 
 export class AppComponent {

@@ -20,7 +20,7 @@ import { appRoutes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { authInterceptor } from './services/auth.interceptor';
+import { authInterceptor } from './services/auth/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
     providers: [

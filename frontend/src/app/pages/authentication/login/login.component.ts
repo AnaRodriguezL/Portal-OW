@@ -34,7 +34,7 @@ export class LoginComponent {
       try {
         const data = await firstValueFrom(this.apiService.postData("Users/login/",rest));
         // Guardar el token en localStorage
-        localStorage.setItem('token', data.token);
+        localStorage.setItem('authToken', data.token);
         console.log('Login successful:', data);
       } catch (error) {
         console.error('Login failed:', error);
@@ -46,7 +46,7 @@ export class LoginComponent {
      // metodo para pasar al registro empleando funciones click en lugar de routerlink (segunda opcion)
   goToRegister(): void {
     // console.log("holaaaaa")
-    this.router.navigate(['/register']);
+    this.router.navigate(['/registro']);
 
   }
 
