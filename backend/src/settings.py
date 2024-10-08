@@ -42,6 +42,7 @@ DJANGO_APPS = [
 THIRD_PART_APP = [
     'rest_framework',
     'rest_framework.authtoken',
+    'corsheaders',
 ]
 
 LOCAL_APPS = [
@@ -65,6 +66,8 @@ REST_FRAMEWORK = {
 }
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -94,18 +97,46 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'src.wsgi.application'
 
+#CORS compatibilidad peticiones entre aplicaciones
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:4200",  # La URL de tu aplicación Angular
+]
+
+CORS_ALLOW_METHODS = [
+    'GET',
+    'POST',
+    'PUT',
+    'PATCH',
+    'DELETE',
+    'OPTIONS',
+]
+
+CORS_ALLOW_HEADERS = [
+    'content-type',
+    'authorization',
+]
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'portalow',
+        'USER': 'portal',
+        'PASSWORD': 'Ow321654',
+        'HOST': 'localhost', 
+        'PORT': '',  
+    }
+}
+""" Si no tienes la BD psotgres configurada, descomenta esto y comenta el de arriba para correr
+DATABASES = {
+    'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-
+"""
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 

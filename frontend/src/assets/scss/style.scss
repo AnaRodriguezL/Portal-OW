@@ -8,7 +8,7 @@
 
 //Theme colors
 @import "themecolors/default_theme";
-@include mat.all-component-themes($bluetheme);
+//@include mat.all-component-themes($bluetheme);
 
 //container layout
 @import "overrides/materialoverrides";
@@ -22,4 +22,6 @@
 // pages
 @import "pages/dashboards";
 @import "pages/auth";
+@import "pages/login";
+@import "pages/register";
 
