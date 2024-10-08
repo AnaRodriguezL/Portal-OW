@@ -39,7 +39,7 @@ export class RegisterComponent {
       try {
         const data = await firstValueFrom(this.apiService.postData("Users/signup/",rest));
         // Guardar el token en localStorage
-        localStorage.setItem('token', data.token);
+        localStorage.setItem('authToken', data.token);
         console.log('Register successful:', data);
         this.registroExitoso = true;
       } catch (error) {
