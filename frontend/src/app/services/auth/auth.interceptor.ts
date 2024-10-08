@@ -5,12 +5,12 @@ import { HttpEvent } from '@angular/common/http';
 
 export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<any>, next: HttpHandlerFn): Observable<HttpEvent<any>> => {
   // Obtiene el token del almacenamiento local (localStorage) o donde lo hayas guardado
-  const token = localStorage.getItem('token');
+  const authToken = localStorage.getItem('authToken');
 
-  if (token) {
+  if (authToken) {
     // Clona la solicitud y agrega el token al encabezado de autorización
     const clonedReq = req.clone({
-      headers: req.headers.set('Authorization', `Token ${token}`)
+      headers: req.headers.set('Authorization', `Token ${authToken}`)
     });
     return next(clonedReq);
   } else {
