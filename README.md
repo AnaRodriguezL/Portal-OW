@@ -81,12 +81,6 @@ ng serve
 
 And that's it! You can now access the application in your web browser by navigating to `http://localhost:4200`.
 
-**Start the backend server:**
-```bash
-cd ../backend
-python manage.py runserver
-```
-
 And that's it! You can now access the application in your web browser by navigating to `http://localhost:8000`.
 
 <br>
