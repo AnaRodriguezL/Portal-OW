@@ -58,7 +58,8 @@ Ahora debemos ver un (env) al inicio de la linea comandos que nos dice que ya es
 Ahora instalaremos las dependencias ejecutando:
 -> python -m pip install -r requirements.txt
 Una vez con todo instalado vamos a configurar la Base de datos si es necesario. Vamos a src/settings.py
-buscamos algo donde diga Databases y veremos que hay una parte comentada con sql, descometamos esa y comentamso la actual.
+Buscamos algo donde diga Databases y veremos que hay una parte comentada con sql.
+Descomentamos ese bloque de codigo y comentamos la que esta actualmente.
 Ahora correremos migraciones(preparar la base de datos)
 -> python manage.py migrate
 ```
