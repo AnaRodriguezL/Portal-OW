@@ -48,9 +48,19 @@ npm install
 
 **Install backend dependencies:**
 ```bash
-cd ../backend
-python -m venv env
-python -m pip install -r requirements.txt
+Vamos a la carpeta de backend
+-> cd ../backend
+creamos un entorno virtual de python env
+-> python -m venv env
+entramos al entorno virtual
+-> env/Scripts/activate
+Ahora debemos ver un (env) al inicio de la linea comandos que nos dice que ya estamso dentro
+Ahora instalaremos las dependencias ejecutando:
+-> python -m pip install -r requirements.txt
+Una vez con todo instalado vamos a configurar la Base de datos si es necesario. Vamos a src/settings.py
+buscamos algo donde diga Databases y veremos que hay una parte comentada con sql, descometamos esa y comentamso la actual.
+Ahora correremos migraciones(preparar la base de datos)
+-> python manage.py migrate
 ```
 
 Configure the database connection in the corresponding configuration file.
@@ -58,7 +68,7 @@ Configure the database connection in the corresponding configuration file.
 **Start the backend server:**
 ```bash
 cd backend
-python app.py
+python manage.py runserver
 ```
 
 **Start the frontend server:**
