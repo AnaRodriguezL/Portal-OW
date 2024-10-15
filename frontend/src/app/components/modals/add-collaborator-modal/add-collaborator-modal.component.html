@@ -1,46 +1,67 @@
 <mat-dialog-content>
-    <!-- Contenido del modal -->
+    <!-- Contenido del modal para agregar un colaborador -->
     <div class="row">
-        <!-- Información general del colaborador -->
+        <!-- Columna izquierda -->
         <div class="col-lg-4">
-            <div class="collaborator-header">
-                <!-- Título con el nombre del colaborador -->
-                <mat-card-title class="collaborator-name">{{ data.collaborator.fullName }}</mat-card-title>
-                <!-- Subtítulo con la posición del colaborador -->
-                <mat-card-subtitle class="collaborator-position">{{ data.collaborator.position }}</mat-card-subtitle>
-                <!-- Imagen del colaborador -->
-                <img [src]="data.collaborator.photo" alt="collaborator" class="img-fluid rounded" />
-            </div>
-
-            <!-- Descripción del colaborador -->
-            <div class="collaborator-description">
-                <!-- Título con el nombre del colaborador -->
-                <mat-card-title class="collaborator-name">Sobre mí</mat-card-title>
-                <!-- Descripción del colaborador -->
-                <mat-card-subtitle class="collaborator-position">{{ data.collaborator.description }}</mat-card-subtitle>
-            </div>
-        </div>
-
-        <!-- Formulario para editar la información del colaborador -->
-        <div class="col-lg-8">
-            <mat-tab-group>
+            <!-- Formulario para agregar un colaborador -->
+            <form [formGroup]="collaboratorForm" (ngSubmit)="saveGeneralInfo()">
+                <!-- Header con título y subtitulo -->
+                <div class="collaborator-header">
+                    <mat-card-title class="collaborator-name" style="margin-bottom: 24px !important;">Agregar
+                        colaborador</mat-card-title>
+                    <!-- Zona para subir una imagen -->
+                    <div class="upload-container">
+                        <ngx-dropzone *ngIf="files.length === 0" (change)="onFileDropped($event)" class="custom-dropzone"
+                            [multiple]="false">
+                            <ngx-dropzone-label>
+                                <div class="dropzone-content">
+                                    <tabler-icon name="cloud-upload" class="upload-icon"></tabler-icon>
+                                </div>
+                            </ngx-dropzone-label>
+                        </ngx-dropzone>
+                        <!-- Imagen subida -->
+                        <div *ngIf="files.length > 0" class="uploaded-image">
+                            <img [src]="files[0]" alt="Uploaded Image" class="uploaded-preview" />
+                            <!-- Botón para eliminar la imagen -->
+                            <button mat-button color="warn" (click)="onRemove(files[0])" style="margin-top: 10px;">Eliminar
+                                imagen</button>
+                        </div>
+                        <!-- Hint para subir una imagen -->
+                        <span class="upload-hint" *ngIf="files.length === 0">Subir imagen</span>
+                    </div>
+                </div>
                 
-                <!-- Pestaña para la información general -->
+                <!-- Campo para descripción -->
+                <div class="collaborator-description">
+                    <mat-card-title class="collaborator-name">Sobre mí</mat-card-title>
+                    <mat-form-field appearance="outline" class="w-100" color="primary">
+                        <textarea matInput formControlName="description" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+"></textarea>
+                    </mat-form-field>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Columna derecha -->
+        <div class="col-lg-8">
+            <!-- Pestañas con información general y bancaria -->
+            <mat-tab-group [(selectedIndex)]="selectedTabIndex">
+                <!-- Pestaña para información general -->
                 <mat-tab label="Información General">
-                    <form [formGroup]="collaboratorForm" style="margin-top: 25px;" class="collaborator-info-modal">
+                    <!-- Formulario para agregar información general -->
+                    <form [formGroup]="collaboratorForm" style="margin-top: 25px;" class="collaborator-info-modal" (ngSubmit)="saveGeneralInfo()">
                         <!-- Campo para el nombre completo -->
                         <mat-form-field appearance="outline" class="w-100" color="primary">
-                            <mat-icon matPrefix>person</mat-icon> <!-- Icono para nombre completo -->
+                            <mat-icon matPrefix>person</mat-icon>
                             <mat-label>Nombre completo</mat-label>
-                            <input matInput formControlName="fullName" />
+                            <input matInput formControlName="fullName" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+"/>
                         </mat-form-field>
 
                         <!-- Campo para el tipo de documento -->
                         <div class="row">
                             <div class="col-lg-6">
                                 <mat-form-field appearance="outline" class="w-100" color="primary">
-                                    <mat-icon matPrefix>assignment_ind</mat-icon> <!-- Icono para tipo de documento -->
-                                    <mat-label>Tipo de Documento</mat-label>
+                                    <mat-icon matPrefix>assignment_ind</mat-icon>
+                                    <mat-label>Tipo de documento</mat-label>
                                     <mat-select formControlName="documentType">
                                         <mat-option value="cc">Cédula de ciudadanía</mat-option>
                                         <mat-option value="ce">Cédula de extranjería</mat-option>
@@ -52,16 +73,16 @@
                             <!-- Campo para el número de documento -->
                             <div class="col-lg-6">
                                 <mat-form-field appearance="outline" class="w-100" color="primary">
-                                    <mat-icon matPrefix>fingerprint</mat-icon> <!-- Icono para número de documento -->
+                                    <mat-icon matPrefix>fingerprint</mat-icon>
                                     <mat-label>Número de documento</mat-label>
-                                    <input matInput formControlName="documentNumber" type="number" />
+                                    <input matInput formControlName="documentNumber" type="number"/>
                                 </mat-form-field>
                             </div>
                         </div>
 
                         <!-- Campo para el correo electrónico -->
                         <mat-form-field appearance="outline" class="w-100" color="primary">
-                            <mat-icon matPrefix>email</mat-icon> <!-- Icono para correo electrónico -->
+                            <mat-icon matPrefix>email</mat-icon>
                             <mat-label>Correo electrónico</mat-label>
                             <input matInput formControlName="email" type="email" />
                         </mat-form-field>
@@ -70,7 +91,7 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <mat-form-field appearance="outline" class="w-100" color="primary">
-                                    <mat-icon matPrefix>public</mat-icon> <!-- Icono para país -->
+                                    <mat-icon matPrefix>public</mat-icon>
                                     <mat-label>País</mat-label>
                                     <mat-select formControlName="country">
                                         <mat-option *ngFor="let country of ['Colombia', 'México', 'España']"
@@ -84,7 +105,7 @@
                             <!-- Campo para el departamento -->
                             <div class="col-lg-6">
                                 <mat-form-field appearance="outline" class="w-100" color="primary">
-                                    <mat-icon matPrefix>place</mat-icon> <!-- Icono para departamento -->
+                                    <mat-icon matPrefix>place</mat-icon>
                                     <mat-label>Departamento</mat-label>
                                     <mat-select formControlName="department">
                                         <mat-option *ngFor="let department of ['Departamento 1', 'Departamento 2']"
@@ -100,7 +121,7 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <mat-form-field appearance="outline" class="w-100" color="primary">
-                                    <mat-icon matPrefix>location_city</mat-icon> <!-- Icono para ciudad -->
+                                    <mat-icon matPrefix>location_city</mat-icon>
                                     <mat-label>Ciudad</mat-label>
                                     <mat-select formControlName="city">
                                         <mat-option *ngFor="let city of ['Ciudad 1', 'Ciudad 2']" [value]="city">
@@ -113,7 +134,7 @@
                             <!-- Campo para la dirección -->
                             <div class="col-lg-6">
                                 <mat-form-field appearance="outline" class="w-100" color="primary">
-                                    <mat-icon matPrefix>home</mat-icon> <!-- Icono para dirección -->
+                                    <mat-icon matPrefix>home</mat-icon>
                                     <mat-label>Dirección</mat-label>
                                     <input matInput formControlName="address" />
                                 </mat-form-field>
@@ -124,7 +145,7 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <mat-form-field appearance="outline" class="w-100" color="primary">
-                                    <mat-icon matPrefix>phone</mat-icon> <!-- Icono para teléfono -->
+                                    <mat-icon matPrefix>phone</mat-icon>
                                     <mat-label>Teléfono</mat-label>
                                     <input matInput formControlName="phone" type="number" />
                                 </mat-form-field>
@@ -133,26 +154,26 @@
                             <!-- Campo para el rol -->
                             <div class="col-lg-6">
                                 <mat-form-field appearance="outline" class="w-100" color="primary">
-                                    <mat-icon matPrefix>work</mat-icon> <!-- Icono para rol -->
+                                    <mat-icon matPrefix>work</mat-icon>
                                     <mat-label>Rol</mat-label>
-                                    <input matInput formControlName="position" />
+                                    <input matInput formControlName="position" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+"/>
                                 </mat-form-field>
                             </div>
                         </div>
 
-                        <!-- Botón para guardar los cambios -->
+                        <!-- Botón para guardar la información general -->
                         <div class="footer-button">
-                            <button mat-flat-button color="primary" type="button" (click)="saveGeneralInfo()" [disabled]="!collaboratorForm.valid">
-                                Guardar cambios
+                            <button mat-flat-button color="primary" type="submit" [disabled]="!collaboratorForm.valid">
+                                Añadir colaborador
                             </button>
                         </div>
                     </form>
                 </mat-tab>
 
-                <!-- Pestaña para la información bancaria -->
-                <mat-tab label="Información Bancaria">
-                    <form [formGroup]="bankForm" style="margin-top: 25px;" class="collaborator-info-modal">
-
+                <!-- Pestaña para información bancaria -->
+                <mat-tab label="Información Bancaria" [disabled]="!isBankInfoVisible">
+                    <!-- Formulario para agregar información bancaria -->
+                    <form [formGroup]="bankForm" style="margin-top: 25px;" (ngSubmit)="saveBankInfo()">
                         <!-- Campo para el banco -->
                         <mat-form-field appearance="outline" class="w-100" color="primary">
                             <mat-icon matPrefix>account_balance</mat-icon>
@@ -164,27 +185,16 @@
                         <mat-form-field appearance="outline" class="w-100" color="primary">
                             <mat-icon matPrefix>credit_card</mat-icon>
                             <mat-label>Número de cuenta</mat-label>
-                            <input matInput formControlName="numberBank" />
+                            <input matInput formControlName="numberBank" type="number" />
                         </mat-form-field>
 
-                        <!-- Botón para guardar los cambios -->
+                        <!-- Botón para guardar la información bancaria -->
                         <div class="footer-button">
-                            <button mat-flat-button color="primary" (click)="saveBankInfo()" [disabled]="!bankForm.valid">
-                                Guardar cambios
+                            <button mat-flat-button color="primary" type="submit" [disabled]="!bankForm.valid">
+                                Añadir información bancaria
                             </button>
                         </div>
                     </form>
-
-                    <!-- Histrial de pagos del colaborador -->
-                    <div class="payment-history">
-                        <h3>Historial de Pagos</h3>
-                        <div class="payment-table">
-                            <div *ngFor="let payment of data.collaborator.paymentHistory" class="payment-row">
-                                <span class="payment-date">{{ payment.date | date: 'dd MMM yyyy' }}</span>
-                                <span class="payment-amount">{{ payment.amount | currency: 'EUR' }}</span>
-                            </div>
-                        </div>
-                    </div>
                 </mat-tab>
             </mat-tab-group>
         </div>

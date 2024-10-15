@@ -239,3 +239,33 @@
 .select-danger {
     background-color: $error;
 }
+
+.mdc-text-field--outlined {
+    padding-left: 22px !important;
+}
+
+.snackbar-success {
+    .mat-mdc-snackbar-surface {
+        background-color: $light-success !important;
+        color: $success !important;
+        font-weight: bold !important;
+        border-radius: 18px !important;
+    }
+
+    span {
+        color: $success !important;
+    }
+}
+
+.snackbar-error {
+    .mat-mdc-snackbar-surface {
+        background-color: $light-error !important;
+        color: $error !important;
+        font-weight: bold !important;
+        border-radius: 18px !important;
+    }
+
+    span {
+        color: $error !important;
+    }
+}

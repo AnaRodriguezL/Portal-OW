@@ -1,9 +1,8 @@
-<!-- collaborators-list.component.html -->
-<div class="row">
+<div class="row collaborator">
     <div class="col-lg-12">
         <mat-card class="cardWithShadow">
             <mat-card-content class="p-24">
-
+                <!-- Si no hay colaboradores, muestra un mensaje y un botón para crear uno -->
                 <div *ngIf="!collaboratorItems || collaboratorItems.length === 0" class="no-events"
                     (click)="openAddCollaboratorModal()">
                     <p>😔 No hay colaboradores creados</p>
@@ -12,34 +11,35 @@
                     </button>
                 </div>
 
+                <!-- Si hay colaboradores, muestra una lista con sus datos -->
                 <div *ngIf="collaboratorItems && collaboratorItems.length > 0">
                     <div class="row">
-                        <div class="col-lg-4 col-sm-6" *ngFor="let collaboratorItem of collaboratorItems">
-                            <mat-card class="b-1 shadow-none">
-                                <mat-card-header>
-                                    <img [src]="collaboratorItem.photo" alt="collaborator" width="50"
+                        <div class="col-lg-3" *ngFor="let collaboratorItem of collaboratorItems">
+                            <mat-card class="collaborator-card shadow"
+                                (click)="openCollaboratorModal(collaboratorItem)">
+                                <mat-card-header class="collaborator-header">
+                                    <!-- Imagen del colaborador -->
+                                    <img [src]="collaboratorItem.photo" alt="colaborador" width="100"
                                         class="rounded-circle" />
-                                    <div class="m-l-16">
-                                        <mat-card-title>
-                                            {{ collaboratorItem.fullName }}
-                                        </mat-card-title>
-                                        <mat-card-subtitle>{{ collaboratorItem.position }}</mat-card-subtitle>
-                                    </div>
+
+                                    <!-- Nombre y rol del colaborador -->
+                                    <mat-card-title class="collaborator-name">
+                                        {{ collaboratorItem.fullName }}
+                                    </mat-card-title>
+                                    <mat-card-subtitle class="collaborator-position">
+                                        {{ collaboratorItem.position }}
+                                    </mat-card-subtitle>
                                 </mat-card-header>
-                                <mat-card-content class="b-t-1" style="text-align: justify;">
-                                    <p><strong>Email:</strong> {{ collaboratorItem.email }}</p>
-                                    <p><strong>Teléfono:</strong> {{ collaboratorItem.phone }}</p>
-                                    <p><strong>País:</strong> {{ collaboratorItem.country }}</p>
+
+                                <!-- Correo electrónico del colaborador -->
+                                <mat-card-content class="collaborator-info">
+                                    <p><strong>Correo electrónico</strong> <br />{{ collaboratorItem.email }}</p>
                                 </mat-card-content>
-                                <mat-card-actions>
-                                    <button mat-button color="primary"
-                                        (click)="openCollaboratorModal(collaboratorItem)">
-                                        Ver detalles
-                                    </button>
-                                </mat-card-actions>
                             </mat-card>
                         </div>
                     </div>
+                    
+                    <!-- Botón para crear un nuevo colaborador -->
                     <button mat-fab color="primary" class="fab-button" (click)="openAddCollaboratorModal()">
                         <mat-icon>add</mat-icon>
                     </button>

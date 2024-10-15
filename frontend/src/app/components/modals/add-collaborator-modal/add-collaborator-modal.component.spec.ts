@@ -1,24 +1,27 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CollaboratorModalComponent } from './collaborator-modal.component';
+/**
+ * Importa el componente que se va a probar
+ */
+import { AddCollaboratorModalComponent } from './add-collaborator-modal.component';
 
 /**
- * Pruebas unitarias del componente CollaboratorModalComponent
+ * Descripción de las pruebas del componente AddCollaboratorModalComponent
  */
-describe('CollaboratorsModalComponent', () => {
-    let component: CollaboratorModalComponent;
-    let fixture: ComponentFixture<CollaboratorModalComponent>;
+describe('AddCollaboratorModalComponent', () => {
+    let component: AddCollaboratorModalComponent;
+    let fixture: ComponentFixture<AddCollaboratorModalComponent>;
 
     /**
      * Configura el entorno de pruebas antes de que se ejecuten las pruebas
      */
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [CollaboratorModalComponent]
+            imports: [AddCollaboratorModalComponent]
         })
             .compileComponents();
 
-        fixture = TestBed.createComponent(CollaboratorModalComponent);
+        fixture = TestBed.createComponent(AddCollaboratorModalComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });
@@ -30,4 +33,3 @@ describe('CollaboratorsModalComponent', () => {
         expect(component).toBeTruthy();
     });
 });
-
