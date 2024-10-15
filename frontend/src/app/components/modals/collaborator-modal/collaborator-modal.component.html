@@ -142,8 +142,11 @@
 
                         <!-- Botón para guardar los cambios -->
                         <div class="footer-button">
+                            <button mat-flat-button color="warn" type="button" (click)="deleteCollaborator()" style="margin-right: 10px;">
+                                <mat-icon>delete</mat-icon> Eliminar colaborador
+                            </button>
                             <button mat-flat-button color="primary" type="button" (click)="saveGeneralInfo()" [disabled]="!collaboratorForm.valid">
-                                Guardar cambios
+                                <mat-icon>save</mat-icon> Guardar cambios
                             </button>
                         </div>
                     </form>
@@ -170,7 +173,7 @@
                         <!-- Botón para guardar los cambios -->
                         <div class="footer-button">
                             <button mat-flat-button color="primary" (click)="saveBankInfo()" [disabled]="!bankForm.valid">
-                                Guardar cambios
+                                <mat-icon>save</mat-icon> Guardar cambios
                             </button>
                         </div>
                     </form>

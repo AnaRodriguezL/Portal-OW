@@ -57,6 +57,40 @@ export class CollaboratorModalComponent {
     }
 
     /**
+     * Eliminar todos los datos del colaborador
+     */
+    deleteCollaborator(): void {
+        const snackBarRef = this.snackBar.open('¿Estás seguro de que deseas eliminar este colaborador?', 'Eliminar', {
+            duration: 5000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+            panelClass: ['snackbar-confirm'],
+        });
+
+        snackBarRef.onAction().subscribe(() => {
+            this.snackBar.open('Colaborador eliminado exitosamente.', 'Cerrar', {
+                duration: 3000,
+                horizontalPosition: 'center',
+                verticalPosition: 'top',
+                panelClass: ['snackbar-success'],
+            });
+
+            this.dialogRef.close({ deleted: true, id: this.data.collaborator.id });
+        });
+
+        snackBarRef.afterDismissed().subscribe(({ dismissedByAction }) => {
+            if (!dismissedByAction) {
+                this.snackBar.open('Eliminación cancelada.', 'Cerrar', {
+                    duration: 3000,
+                    horizontalPosition: 'center',
+                    verticalPosition: 'top',
+                    panelClass: ['snackbar-error'],
+                });
+            }
+        });
+    }
+
+    /**
      * Guarda la información general del colaborador.
      */
     saveGeneralInfo(): void {
