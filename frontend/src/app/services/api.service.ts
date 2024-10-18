@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-  private apiUrl = 'https://portal-ow-a75186b77f0c.herokuapp.com/'; // Reemplaza con la URL de tu API Django
+  private apiUrl = 'https://portal-ow-a75186b77f0c.herokuapp.com'; // Reemplaza con la URL de tu API Django
 
   constructor(private http: HttpClient) {}
 
